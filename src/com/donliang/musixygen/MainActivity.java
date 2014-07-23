@@ -3,26 +3,40 @@ package com.donliang.musixygen;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.os.Build;
 
 public class MainActivity extends Activity {
 
+	MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
+        Button play = (Button)findViewById(R.id.play_button);
+        play.setOnClickListener(new View.OnClickListener() {       	
+        	@Override
+        	public void onClick(View v) {
+        		Uri path = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video_games);
+        		mediaPlayer = MediaPlayer.create(MainActivity.this, path);
+        		mediaPlayer.start();
+        	}
+        });
+        
+//        if (savedInstanceState == null) {
+//            getFragmentManager().beginTransaction()
+//                    .add(R.id.container, new PlaceholderFragment())
+//                    .commit();
+//        }
     }
 
 

@@ -1,7 +1,62 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/layout_default"
     tools:context="com.donliang.musixygen.MainActivity"
-    tools:ignore="MergeRootFrame" />
+    tools:ignore="MergeRootFrame" >
+
+    <ImageView
+        android:id="@+id/album_cover"
+        android:layout_width="match_parent"
+        android:layout_height="375dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/album_cover" />
+
+    <TextView
+        android:id="@+id/artist_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="21dp"
+        android:text="LANA DEL REY"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/text_default" />
+
+    <TextView
+        android:id="@+id/song_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/artist_name"
+        android:layout_below="@+id/artist_name"
+        android:text="Video Games"
+        android:textColor="@color/song_name"
+        android:textSize="44sp" />
+
+    <Button
+        android:id="@+id/play_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/artist_name"
+        android:layout_marginBottom="39dp"
+        android:layout_marginRight="15dp"
+        android:background="@color/button_default"
+        android:text="Play"
+        android:textColor="@color/text_default" />
+
+    <Button
+        android:id="@+id/stop_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/play_button"
+        android:layout_alignBottom="@+id/play_button"
+        android:layout_alignRight="@+id/song_name"
+        android:background="@color/button_default"
+        android:text="Stop"
+        android:textColor="@color/text_default" />
+
+</RelativeLayout>
