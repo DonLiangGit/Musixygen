@@ -34,16 +34,14 @@
         android:layout_below="@+id/artist_name"
         android:text="Video Games"
         android:textColor="@color/song_name"
-        android:textSize="44sp" />
+        android:textSize="30sp" />
 
     <Button
         android:id="@+id/play_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/artist_name"
-        android:layout_marginBottom="39dp"
-        android:layout_marginRight="15dp"
+        android:layout_alignLeft="@+id/song_name"
+        android:layout_below="@+id/album_cover"
         android:background="@color/button_default"
         android:text="Play"
         android:textColor="@color/text_default" />
@@ -52,9 +50,8 @@
         android:id="@+id/stop_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/play_button"
-        android:layout_alignBottom="@+id/play_button"
-        android:layout_alignRight="@+id/song_name"
+        android:layout_alignRight="@+id/artist_name"
+        android:layout_below="@+id/album_cover"
         android:background="@color/button_default"
         android:text="Stop"
         android:textColor="@color/text_default" />

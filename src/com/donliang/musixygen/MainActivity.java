@@ -32,6 +32,16 @@ public class MainActivity extends Activity {
         	}
         });
         
+        Button stop = (Button)findViewById(R.id.stop_button);
+        stop.setOnClickListener(new View.OnClickListener() {       	
+        	@Override
+        	public void onClick(View v) {
+        		if (mediaPlayer.isPlaying()) {
+            		mediaPlayer.stop();
+            		mediaPlayer.release();       			
+        		}
+        	}
+        });
 //        if (savedInstanceState == null) {
 //            getFragmentManager().beginTransaction()
 //                    .add(R.id.container, new PlaceholderFragment())
