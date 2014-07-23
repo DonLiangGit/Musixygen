@@ -42,6 +42,16 @@ public class MainActivity extends Activity {
         		}
         	}
         });
+        
+        Button pause = (Button)findViewById(R.id.pause_button);
+        stop.setOnClickListener(new View.OnClickListener() {       	
+        	@Override
+        	public void onClick(View v) {
+        		if (mediaPlayer.isPlaying()) {
+            		mediaPlayer.pause();      			
+        		}
+        	}
+        });
 //        if (savedInstanceState == null) {
 //            getFragmentManager().beginTransaction()
 //                    .add(R.id.container, new PlaceholderFragment())
@@ -85,5 +95,18 @@ public class MainActivity extends Activity {
             return rootView;
         }
     }
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		if(mediaPlayer != null && mediaPlayer.isPlaying()) {
+			mediaPlayer.stop();
+			mediaPlayer.release();
+			mediaPlayer = null;
+		}
+		super.onDestroy();
+	}
+    
+    
 
 }
