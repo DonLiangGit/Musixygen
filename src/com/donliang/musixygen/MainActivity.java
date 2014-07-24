@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends Activity {
@@ -28,6 +29,7 @@ public class MainActivity extends Activity {
         	public void onClick(View v) {
         		Uri path = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video_games);
         		mediaPlayer = MediaPlayer.create(MainActivity.this, path);
+        		Toast.makeText(getBaseContext(), "play", Toast.LENGTH_SHORT ).show();
         		mediaPlayer.start();
         	}
         });
@@ -37,19 +39,30 @@ public class MainActivity extends Activity {
         	@Override
         	public void onClick(View v) {
         		if (mediaPlayer.isPlaying()) {
+        			Toast.makeText(getBaseContext(), "stop", Toast.LENGTH_SHORT ).show();
             		mediaPlayer.stop();
-            		mediaPlayer.release();       			
+            		mediaPlayer.release(); 
+            		
         		}
         	}
         });
         
         Button pause = (Button)findViewById(R.id.pause_button);
-        stop.setOnClickListener(new View.OnClickListener() {       	
+        pause.setOnClickListener(new View.OnClickListener() {       	
         	@Override
         	public void onClick(View v) {
         		if (mediaPlayer.isPlaying()) {
+        			Toast.makeText(getBaseContext(), "pause", Toast.LENGTH_SHORT ).show();
             		mediaPlayer.pause();      			
         		}
+        	}
+        });
+        
+        Button loop = (Button)findViewById(R.id.loop_button);
+        loop.setOnClickListener(new View.OnClickListener() {       	
+        	@Override
+        	public void onClick(View v) {
+        		mediaPlayer.setLooping(true);
         	}
         });
 //        if (savedInstanceState == null) {

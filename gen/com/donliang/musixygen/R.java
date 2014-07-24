@@ -33,14 +33,15 @@ public final class R {
         public static final int round_button=0x7f020002;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0007;
+        public static final int action_settings=0x7f0a0008;
         public static final int album_cover=0x7f0a0001;
         public static final int artist_name=0x7f0a0002;
         public static final int container=0x7f0a0000;
-        public static final int pause_button=0x7f0a0005;
-        public static final int play_button=0x7f0a0006;
+        public static final int loop_button=0x7f0a0007;
+        public static final int pause_button=0x7f0a0004;
+        public static final int play_button=0x7f0a0005;
         public static final int song_name=0x7f0a0003;
-        public static final int stop_button=0x7f0a0004;
+        public static final int stop_button=0x7f0a0006;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -62,11 +63,9 @@ public final class R {
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     
-
-            Theme customizations available in newer API levels can go in
+             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
-        
+            backward-compatibility can go here. 
 
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
@@ -80,8 +79,8 @@ public final class R {
  API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f080000;
-        /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
+        /**      Application theme. 
+         All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
     }

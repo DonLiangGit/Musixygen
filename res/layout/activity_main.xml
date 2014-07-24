@@ -37,19 +37,6 @@
         android:textSize="30sp" />
 
     <Button
-        android:id="@+id/stop_button"
-        android:layout_width="60sp"
-        android:layout_height="60sp"
-        android:layout_alignBaseline="@+id/pause_button"
-        android:layout_alignBottom="@+id/pause_button"
-        android:layout_marginLeft="47dp"
-        android:layout_toRightOf="@+id/song_name"
-        android:background="@drawable/round_button"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="Stop"
-        android:textColor="@color/text_default" />
-
-    <Button
         android:id="@+id/pause_button"
         android:layout_width="60sp"
         android:layout_height="60sp"
@@ -72,6 +59,32 @@
         android:background="@drawable/round_button"
         android:gravity="center_vertical|center_horizontal"
         android:text="Play"
+        android:textColor="@color/text_default" />
+
+    <Button
+        android:id="@+id/stop_button"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:layout_alignBaseline="@+id/pause_button"
+        android:layout_alignBottom="@+id/pause_button"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/pause_button"
+        android:background="@drawable/round_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Stop"
+        android:textColor="@color/text_default" />
+
+    <Button
+        android:id="@+id/loop_button"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/album_cover"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/round_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Loop"
         android:textColor="@color/text_default" />
 
 </RelativeLayout>
