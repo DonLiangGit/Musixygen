@@ -7,7 +7,7 @@ Musixygen
 * ListView: MainActivity / SlidingMenu
 
 #### App developement stage:
-* MainActivity Polished.
+* MainActivity Polished...
 
 =
 Known Issues:
