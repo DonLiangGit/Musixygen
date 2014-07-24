@@ -6,23 +6,33 @@ import android.app.Fragment;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.SeekBar;
 import android.widget.Toast;
 import android.os.Build;
 
 public class MainActivity extends Activity {
 
 	MediaPlayer mediaPlayer;
+	private SeekBar songBar;
+	private double startTime = 0;
+	private double lastTime = 0;
+	
+	private Handler barHandler = new Handler();
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        songBar = (SeekBar)findViewById(R.id.songBar);
+        
         Button play = (Button)findViewById(R.id.play_button);
         play.setOnClickListener(new View.OnClickListener() {       	
         	@Override
@@ -31,6 +41,12 @@ public class MainActivity extends Activity {
         		mediaPlayer = MediaPlayer.create(MainActivity.this, path);
         		Toast.makeText(getBaseContext(), "play", Toast.LENGTH_SHORT ).show();
         		mediaPlayer.start();
+        		
+        		// initialize seekbar progress
+        		startTime = mediaPlayer.getCurrentPosition();
+        		lastTime = mediaPlayer.getDuration();
+        		songBar.setProgress((int)startTime);
+        		barHandler.postDelayed(updatedSongTime, 100);
         	}
         });
         
@@ -73,6 +89,17 @@ public class MainActivity extends Activity {
 //        }
     }
 
+    private Runnable updatedSongTime = new Runnable() {
+
+    	@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			startTime = mediaPlayer.getCurrentPosition();
+			songBar.setProgress((int)startTime);
+			barHandler.postDelayed(this, 100);
+		}
+    	
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

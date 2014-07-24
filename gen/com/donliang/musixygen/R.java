@@ -34,15 +34,16 @@ public final class R {
         public static final int round_button_over=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f0a0008;
+        public static final int action_settings=0x7f0a0009;
         public static final int album_cover=0x7f0a0001;
-        public static final int artist_name=0x7f0a0002;
+        public static final int artist_name=0x7f0a0003;
         public static final int container=0x7f0a0000;
-        public static final int loop_button=0x7f0a0007;
-        public static final int pause_button=0x7f0a0004;
-        public static final int play_button=0x7f0a0005;
-        public static final int song_name=0x7f0a0003;
-        public static final int stop_button=0x7f0a0006;
+        public static final int loop_button=0x7f0a0008;
+        public static final int pause_button=0x7f0a0005;
+        public static final int play_button=0x7f0a0006;
+        public static final int songBar=0x7f0a0002;
+        public static final int song_name=0x7f0a0004;
+        public static final int stop_button=0x7f0a0007;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

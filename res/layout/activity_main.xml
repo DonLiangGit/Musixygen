@@ -15,6 +15,13 @@
         android:layout_alignParentTop="true"
         android:src="@drawable/album_cover" />
 
+    <SeekBar
+        android:id="@+id/songBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/album_cover" />
+    
     <TextView
         android:id="@+id/artist_name"
         android:layout_width="wrap_content"
@@ -49,19 +56,6 @@
         android:textColor="@color/text_default" />
 
     <Button
-        android:id="@+id/play_button"
-        android:layout_width="60sp"
-        android:layout_height="60sp"
-        android:layout_below="@+id/album_cover"
-        android:layout_marginRight="22dp"
-        android:layout_marginTop="38dp"
-        android:layout_toLeftOf="@+id/pause_button"
-        android:background="@drawable/round_button"
-        android:gravity="center_vertical|center_horizontal"
-        android:text="Play"
-        android:textColor="@color/text_default" />
-
-    <Button
         android:id="@+id/stop_button"
         android:layout_width="60sp"
         android:layout_height="60sp"
@@ -84,5 +78,20 @@
         android:background="@drawable/round_button_over"
         android:text="Loop"
         android:textColor="@color/text_default" />
+
+    <Button
+        android:id="@+id/play_button"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="22dp"
+        android:layout_toLeftOf="@+id/pause_button"
+        android:background="@drawable/round_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="Play"
+        android:textColor="@color/text_default" />
+
+
 
 </RelativeLayout>
