@@ -6,6 +6,10 @@ Musixygen
 * Button: Forward,Backward,Play(Pause),Stop,Loop
 * ListView: MainActivity / SlidingMenu
 
+#### App developement stage:
+* MainActivity Polished.
+
+=
 Known Issues:
 - Play and Pause not integrated in one Button.
 - Actionbar has not been removed. (Android actionbar sherlock to make it fully transparent)
