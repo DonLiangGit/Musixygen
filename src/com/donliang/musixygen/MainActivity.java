@@ -62,6 +62,7 @@ public class MainActivity extends Activity {
         loop.setOnClickListener(new View.OnClickListener() {       	
         	@Override
         	public void onClick(View v) {
+        		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
         		mediaPlayer.setLooping(true);
         	}
         });

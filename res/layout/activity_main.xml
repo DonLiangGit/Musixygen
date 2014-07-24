@@ -76,14 +76,12 @@
 
     <Button
         android:id="@+id/loop_button"
-        android:layout_width="40sp"
-        android:layout_height="40sp"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_alignBottom="@+id/song_name"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/album_cover"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="18dp"
-        android:background="@drawable/round_button"
-        android:gravity="center_vertical|center_horizontal"
+        android:layout_marginRight="14dp"
+        android:background="@drawable/round_button_over"
         android:text="Loop"
         android:textColor="@color/text_default" />
 
