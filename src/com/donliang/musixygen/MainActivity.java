@@ -29,9 +29,11 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
+        setContentView(R.layout.testing_layout);
 
         songBar = (SeekBar)findViewById(R.id.songBar);
+        
         
         Button play = (Button)findViewById(R.id.play_button);
         play.setOnClickListener(new View.OnClickListener() {       	
@@ -45,11 +47,12 @@ public class MainActivity extends Activity {
         		// initialize seekbar progress
         		startTime = mediaPlayer.getCurrentPosition();
         		lastTime = mediaPlayer.getDuration();
+        		songBar.setMax((int)lastTime);
         		songBar.setProgress((int)startTime);
         		barHandler.postDelayed(updatedSongTime, 100);
         	}
         });
-        
+//        
         Button stop = (Button)findViewById(R.id.stop_button);
         stop.setOnClickListener(new View.OnClickListener() {       	
         	@Override
@@ -62,7 +65,7 @@ public class MainActivity extends Activity {
         		}
         	}
         });
-        
+//        
         Button pause = (Button)findViewById(R.id.pause_button);
         pause.setOnClickListener(new View.OnClickListener() {       	
         	@Override
@@ -73,15 +76,15 @@ public class MainActivity extends Activity {
         		}
         	}
         });
-        
-        Button loop = (Button)findViewById(R.id.loop_button);
-        loop.setOnClickListener(new View.OnClickListener() {       	
-        	@Override
-        	public void onClick(View v) {
-        		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
-        		mediaPlayer.setLooping(true);
-        	}
-        });
+//        
+//        Button loop = (Button)findViewById(R.id.loop_button);
+//        loop.setOnClickListener(new View.OnClickListener() {       	
+//        	@Override
+//        	public void onClick(View v) {
+//        		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
+//        		mediaPlayer.setLooping(true);
+//        	}
+//        });
 //        if (savedInstanceState == null) {
 //            getFragmentManager().beginTransaction()
 //                    .add(R.id.container, new PlaceholderFragment())

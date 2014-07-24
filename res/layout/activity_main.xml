@@ -4,45 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/layout_default"
-    tools:context="com.donliang.musixygen.MainActivity"
+    tools:context="com.donliang.musixygen.MainActivity"    
     tools:ignore="MergeRootFrame" >
 
     <ImageView
         android:id="@+id/album_cover"
         android:layout_width="match_parent"
-        android:layout_height="375dp"
+        android:layout_height="300dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:fitsSystemWindows="true"        
         android:src="@drawable/album_cover" />
-
-    <SeekBar
-        android:id="@+id/songBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/album_cover" />
     
-    <TextView
-        android:id="@+id/artist_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="21dp"
-        android:text="LANA DEL REY"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/text_default" />
-
-    <TextView
-        android:id="@+id/song_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/artist_name"
-        android:layout_below="@+id/artist_name"
-        android:text="Video Games"
-        android:textColor="@color/song_name"
-        android:textSize="30sp" />
-
     <Button
         android:id="@+id/pause_button"
         android:layout_width="60sp"
@@ -69,17 +42,6 @@
         android:textColor="@color/text_default" />
 
     <Button
-        android:id="@+id/loop_button"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        android:layout_alignBottom="@+id/song_name"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="14dp"
-        android:background="@drawable/round_button_over"
-        android:text="Loop"
-        android:textColor="@color/text_default" />
-
-    <Button
         android:id="@+id/play_button"
         android:layout_width="60sp"
         android:layout_height="60sp"
@@ -92,6 +54,45 @@
         android:text="Play"
         android:textColor="@color/text_default" />
 
+    <TextView
+        android:id="@+id/song_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/artist_name"
+        android:layout_below="@+id/album_cover"
+        android:layout_marginTop="73dp"
+        android:text="Video Games"
+        android:textColor="@color/song_name"
+        android:textSize="30sp" />
 
+    <TextView
+        android:id="@+id/artist_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/album_cover"
+        android:layout_marginTop="22dp"
+        android:layout_toLeftOf="@+id/pause_button"
+        android:text="LANA DEL REY"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/text_default" />
+
+    <Button
+        android:id="@+id/loop_button"
+        android:layout_width="50sp"
+        android:layout_height="50sp"
+        android:layout_alignTop="@+id/stop_button"
+        android:layout_marginLeft="13dp"
+        android:layout_toRightOf="@+id/stop_button"
+        android:background="@drawable/round_button_over"
+        android:text="Loop"
+        android:textColor="@color/text_default" />
+
+    <SeekBar
+        android:id="@+id/songBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/song_name"
+        android:layout_marginTop="20dp" />
 
 </RelativeLayout>
