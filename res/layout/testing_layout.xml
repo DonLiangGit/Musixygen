@@ -78,41 +78,53 @@
 	    android:layout_alignParentLeft="true" />
 	
 	<LinearLayout
+	    android:id="@+id/buttonLayout"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentLeft="true"
 	    android:layout_below="@+id/album_cover"
 	    android:orientation="horizontal" >
 	    
-	<Button
-	    android:id="@+id/play_button"
-	    android:layout_width="60sp"
-	    android:layout_height="60sp"
-	    android:background="@drawable/round_button"
-	    android:gravity="center_vertical|center_horizontal"
-	    android:text="Play"
-	    android:textColor="@color/text_default" />
-
-	<Button
-	    android:id="@+id/stop_button"
-	    android:layout_width="60sp"
-	    android:layout_height="60sp"
-	    android:background="@drawable/round_button"
-	    android:gravity="center_vertical|center_horizontal"
-	    android:text="Stop"
-	    android:textColor="@color/text_default" />
-
-	<Button
-	    android:id="@+id/pause_button"
-	    android:layout_width="60sp"
-	    android:layout_height="60sp"
-	    android:layout_alignBaseline="@+id/play_button"
-	    android:layout_alignBottom="@+id/play_button"
-	    android:layout_centerHorizontal="true"
-	    android:background="@drawable/round_button"
-	    android:gravity="center_vertical|center_horizontal"
-	    android:text="Pause"
-	    android:textColor="@color/text_default" />
+<!-- 		<Button
+		    android:id="@+id/play_button"
+		    android:layout_width="60sp"
+		    android:layout_height="60sp"
+		    android:background="@drawable/round_button"
+		    android:gravity="center_vertical|center_horizontal"
+		    android:text="Play"
+		    android:textColor="@color/text_default" />
+	
+		<Button
+		    android:id="@+id/stop_button"
+		    android:layout_width="60sp"
+		    android:layout_height="60sp"
+		    android:background="@drawable/round_button"
+		    android:gravity="center_vertical|center_horizontal"
+		    android:text="Stop"
+		    android:textColor="@color/text_default" />
+	
+		<Button
+		    android:id="@+id/pause_button"
+		    android:layout_width="60sp"
+		    android:layout_height="60sp"
+		    android:layout_alignBaseline="@+id/play_button"
+		    android:layout_alignBottom="@+id/play_button"
+		    android:layout_centerHorizontal="true"
+		    android:background="@drawable/round_button"
+		    android:gravity="center_vertical|center_horizontal"
+		    android:text="Pause"
+		    android:textColor="@color/text_default" /> -->
+	
 	</LinearLayout>
+	
+	<ListView
+	    android:id="@+id/album_list"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:layout_below="@id/buttonLayout"
+	    android:orientation="vertical" >
+    </ListView>
+	
+
     
 </RelativeLayout>

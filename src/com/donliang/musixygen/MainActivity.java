@@ -3,6 +3,7 @@ package com.donliang.musixygen;
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.content.Context;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,7 +13,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Toast;
 import android.os.Build;
@@ -26,12 +29,25 @@ public class MainActivity extends Activity {
 	
 	private Handler barHandler = new Handler();
 	
+	private ListView albumList;
+	
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
         setContentView(R.layout.testing_layout);
+        
+        albumList = (ListView)findViewById(R.id.album_list);
+		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		View view = inflater.inflate(R.layout.control_button, null);
+		albumList.addHeaderView(view);
+		
+        String[] drawer_menu = this.getResources().getStringArray(R.array.album_item);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.song_list_item, drawer_menu);
+        albumList.setAdapter(adapter);
 
+//        initSlidngMenuLV();
+        
         songBar = (SeekBar)findViewById(R.id.songBar);
         
         
@@ -59,9 +75,8 @@ public class MainActivity extends Activity {
         	public void onClick(View v) {
         		if (mediaPlayer.isPlaying()) {
         			Toast.makeText(getBaseContext(), "stop", Toast.LENGTH_SHORT ).show();
-            		mediaPlayer.stop();
-            		mediaPlayer.release(); 
-            		
+            		mediaPlayer.pause();
+            		mediaPlayer.seekTo(0);
         		}
         	}
         });
@@ -77,14 +92,14 @@ public class MainActivity extends Activity {
         	}
         });
 //        
-//        Button loop = (Button)findViewById(R.id.loop_button);
-//        loop.setOnClickListener(new View.OnClickListener() {       	
-//        	@Override
-//        	public void onClick(View v) {
-//        		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
-//        		mediaPlayer.setLooping(true);
-//        	}
-//        });
+        Button loop = (Button)findViewById(R.id.loop_button);
+        loop.setOnClickListener(new View.OnClickListener() {       	
+        	@Override
+        	public void onClick(View v) {
+        		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
+        		mediaPlayer.setLooping(true);
+        	}
+        });
 //        if (savedInstanceState == null) {
 //            getFragmentManager().beginTransaction()
 //                    .add(R.id.container, new PlaceholderFragment())
@@ -92,6 +107,12 @@ public class MainActivity extends Activity {
 //        }
     }
 
+//	private void initSlidngMenuLV() {
+//		// TODO Auto-generated method stub
+//		setBehindContentView(R.layout.activity_menu);
+//		getSlidingMenu().setBehindOffset(100);
+//	}
+	
     private Runnable updatedSongTime = new Runnable() {
 
     	@Override

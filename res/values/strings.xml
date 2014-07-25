@@ -5,4 +5,14 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string-array name="album_item">
+        <item>1.Born to Die</item>
+        <item>2.Off to the Races</item>
+        <item>3.Blue Jeans</item>
+        <item>4.Video Games</item>
+        <item>5.Summertime Sadness</item>
+        <item>6.National Anthem</item>
+        <item>7.Dark Paradise</item>
+    </string-array>
+    
 </resources>
