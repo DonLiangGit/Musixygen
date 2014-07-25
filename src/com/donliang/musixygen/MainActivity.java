@@ -26,6 +26,9 @@ public class MainActivity extends Activity {
 	private SeekBar songBar;
 	private double startTime = 0;
 	private double lastTime = 0;
+	private int temp = 0;
+	private int forwardTime = 10000;
+	private int rewindTime = 10000;
 	
 	private Handler barHandler = new Handler();
 	
@@ -98,6 +101,34 @@ public class MainActivity extends Activity {
         	public void onClick(View v) {
         		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
         		mediaPlayer.setLooping(true);
+        	}
+        });
+        
+        Button forward = (Button)findViewById(R.id.forward_button);
+        forward.setOnClickListener(new View.OnClickListener() {       	
+        	@Override
+        	public void onClick(View v) {
+        		temp = (int)startTime;
+        		if ( (temp+forwardTime) <= lastTime ) {
+        			startTime = startTime + forwardTime;
+        			mediaPlayer.seekTo((int)startTime);
+        		} else {
+        			Toast.makeText(getBaseContext(), "Cannot forward.", Toast.LENGTH_SHORT).show();
+        		}
+        	}
+        });
+        
+        Button rewind = (Button)findViewById(R.id.rewind_button);
+        rewind.setOnClickListener(new View.OnClickListener() {       	
+        	@Override
+        	public void onClick(View v) {
+        		temp = (int)startTime;
+        		if ( (temp - rewindTime) > 0) {
+        			startTime = startTime - rewindTime;
+        			mediaPlayer.seekTo((int)startTime);
+        		} else {
+        			Toast.makeText(getBaseContext(), "Cannot rewind", Toast.LENGTH_SHORT).show();
+        		}
         	}
         });
 //        if (savedInstanceState == null) {
