@@ -2,7 +2,7 @@ Musixygen
 =========
 
 ## Specifications
-* Big thanks and respect for the inspiration from Kareativa Studio: [iOS7 Simple Music Player App](https://dribbble.com/shots/1142984-iOS7-Simple-Music-Player-App?list=users&offset=34)
+* Big thanks and respect for the APP UI inspiration from Kareativa Studio: [iOS7 Simple Music Player App](https://dribbble.com/shots/1142984-iOS7-Simple-Music-Player-App?list=users&offset=34)
 * Button: Forward,Backward,Play(Pause),Stop,Loop
 * ListView: MainActivity / SlidingMenu
 
