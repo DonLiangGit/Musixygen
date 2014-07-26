@@ -2,7 +2,7 @@ Musixygen
 =========
 
 ## Specifications
-* Big thanks and respect for the APP UI inspiration from Kareativa Studio: [iOS7 Simple Music Player App](https://dribbble.com/shots/1142984-iOS7-Simple-Music-Player-App?list=users&offset=34)
+* Big thanks and respect for the APP UI inspiration from **Kareativa Studio** : [iOS7 Simple Music Player App](https://dribbble.com/shots/1142984-iOS7-Simple-Music-Player-App?list=users&offset=34)
 * Button: Forward,Backward,Play(Pause),Stop,Loop
 * ListView: MainActivity / SlidingMenu
 
@@ -12,10 +12,10 @@ Musixygen
 =
 Known Issues:
 - Play and Pause not integrated in one Button.
-- Actionbar has not been removed. (Android actionbar sherlock to make it fully transparent)
+- ~~Actionbar has not been removed. (Android actionbar sherlock to make it fully transparent)~~
 - Hardcoding on read .mp3 media.
 - Sliding Menu / Splash Screen have not been implemented.
-- Progress bar
+- ~~Progress bar~~(Need Overlay effect)
 - Read Android local storage
 - Flexible Album info()
 - Overlay Progressbar
