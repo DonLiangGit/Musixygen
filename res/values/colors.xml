@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 	<color name="button_default">#BF9cede4</color>
-	<color name="song_name">#9cede4</color>
+	<color name="song_name">#8cfffa</color>
 	<color name="layout_default">#000000</color>  
 	<color name="text_default">#FFFFFF</color> 
 </resources>

@@ -161,6 +161,7 @@ public class MainActivity extends Activity {
 					TimeUnit.MILLISECONDS.toSeconds((long)startTime) - 
 					TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)startTime)))
 					);
+			
 			songBar.setProgress((int)startTime);
 			barHandler.postDelayed(this, 100);
 		}
