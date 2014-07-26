@@ -1,5 +1,7 @@
 package com.donliang.musixygen;
 
+import java.util.concurrent.TimeUnit;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -17,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
@@ -29,6 +32,7 @@ public class MainActivity extends Activity {
 	private int temp = 0;
 	private int forwardTime = 10000;
 	private int rewindTime = 10000;
+	private TextView playTimeField;
 	
 	private Handler barHandler = new Handler();
 	
@@ -48,7 +52,8 @@ public class MainActivity extends Activity {
         String[] drawer_menu = this.getResources().getStringArray(R.array.album_item);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.song_list_item, drawer_menu);
         albumList.setAdapter(adapter);
-
+        
+        playTimeField = (TextView)findViewById(R.id.playTime);
 //        initSlidngMenuLV();
         
         songBar = (SeekBar)findViewById(R.id.songBar);
@@ -150,6 +155,12 @@ public class MainActivity extends Activity {
 		public void run() {
 			// TODO Auto-generated method stub
 			startTime = mediaPlayer.getCurrentPosition();
+			// Dynamic Time
+			playTimeField.setText(String.format("%d:%02d",
+					TimeUnit.MILLISECONDS.toMinutes((long)startTime),
+					TimeUnit.MILLISECONDS.toSeconds((long)startTime) - 
+					TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes((long)startTime)))
+					);
 			songBar.setProgress((int)startTime);
 			barHandler.postDelayed(this, 100);
 		}

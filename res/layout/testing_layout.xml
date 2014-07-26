@@ -28,6 +28,17 @@
         android:text="Video Games"
         android:textColor="@color/song_name"
         android:textSize="35sp" />
+    
+    <TextView
+	    android:id="@+id/playTime"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/song_name"
+	    android:layout_below="@+id/loop_button"
+	    android:text="0:00"
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:textColor="@color/text_default"
+	    android:textSize="20dp" />
 
     <Button
         android:id="@+id/loop_button"
@@ -39,7 +50,7 @@
         android:background="@drawable/round_button_over"
         android:text="Loop"
         android:textColor="@color/text_default" />
-
+        
     <TextView
         android:id="@+id/artist_name"
         android:layout_width="wrap_content"
@@ -124,7 +135,7 @@
 	    android:layout_below="@id/buttonLayout"
 	    android:orientation="vertical" >
     </ListView>
-	
+
 
     
 </RelativeLayout>
