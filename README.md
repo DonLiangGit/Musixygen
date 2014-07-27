@@ -25,3 +25,4 @@ Known Issues:
 - Flexible Album info()
 - Overlay Progressbar
 - Auto searching related song put into a list(parser)
+- Issues during the developement process will be stated in detail in sidebar `issues`
