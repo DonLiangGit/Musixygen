@@ -9,6 +9,11 @@ Musixygen
 #### App developement stage:
 * MainActivity Polished...
 
+#### Features:
+* iOS like transparent statusbar and navigation bar.
+* listview with header.
+* 
+
 =
 Known Issues:
 - Play and Pause not integrated in one Button.
