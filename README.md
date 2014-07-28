@@ -12,7 +12,7 @@ Musixygen
 #### Features:
 * iOS like transparent statusbar and navigation bar.
 * listview with header.
-* 
+* Choosing MediaPlayer instead of Soundpool or AudioTrack [Difference in details](http://www.wiseandroid.com/post/2010/07/13/Intro-to-the-three-Android-Audio-APIs.aspx)
 
 =
 Known Issues:
