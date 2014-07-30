@@ -2,6 +2,8 @@ package com.donliang.musixygen;
 
 import java.util.concurrent.TimeUnit;
 
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -23,7 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
-public class MainActivity extends Activity {
+public class MainActivity extends SlidingActivity {
 
 	MediaPlayer mediaPlayer;
 	private SeekBar songBar;
@@ -33,6 +35,7 @@ public class MainActivity extends Activity {
 	private int forwardTime = 10000;
 	private int rewindTime = 10000;
 	private TextView playTimeField;
+	private boolean ButtonBoolean = false;
 	
 	private Handler barHandler = new Handler();
 	
@@ -43,6 +46,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 //        setContentView(R.layout.activity_main);
         setContentView(R.layout.testing_layout);
+		setBehindContentView(R.layout.activity_menu);
+		getSlidingMenu().setBehindOffset(100);
         
         albumList = (ListView)findViewById(R.id.album_list);
 		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -104,8 +109,15 @@ public class MainActivity extends Activity {
         loop.setOnClickListener(new View.OnClickListener() {       	
         	@Override
         	public void onClick(View v) {
-        		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
-        		mediaPlayer.setLooping(true);
+        		if (!ButtonBoolean) {
+	        		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
+	        		mediaPlayer.setLooping(true); 
+	        		ButtonBoolean = true; 
+        		} else {
+            		Toast.makeText(getBaseContext(), "looping is false", Toast.LENGTH_SHORT ).show();
+            		mediaPlayer.setLooping(false); 
+            		ButtonBoolean = false; 
+        		}     		
         	}
         });
         
