@@ -8,6 +8,7 @@ Musixygen
 
 #### App developement stage:
 * MainActivity Polished...
+* Integration slidingmenu and .mp3 listview
 
 #### Features:
 * iOS like transparent statusbar and navigation bar.
@@ -18,10 +19,10 @@ Musixygen
 Known Issues:
 - Play and Pause not integrated in one Button.
 - ~~Actionbar has not been removed. (Android actionbar sherlock to make it fully transparent)~~
-- Hardcoding on read .mp3 media.
+- ~~Hardcoding on read .mp3 media.~~
 - Sliding Menu / Splash Screen have not been implemented.
 - ~~Progress bar~~(Need Overlay effect)
-- Read Android local storage
+- ~~Read Android local storage~~
 - Flexible Album info()
 - Overlay Progressbar
 - Auto searching related song put into a list(parser)
