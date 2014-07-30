@@ -26,4 +26,5 @@ Known Issues:
 - Flexible Album info()
 - Overlay Progressbar
 - Auto searching related song put into a list(parser)
+- Play songs in ~~single repeat~~, repeat all, order, shuffle
 - Issues during the developement process will be stated in detail in sidebar `issues`
