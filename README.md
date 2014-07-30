@@ -20,7 +20,7 @@ Known Issues:
 - Play and Pause not integrated in one Button.
 - ~~Actionbar has not been removed. (Android actionbar sherlock to make it fully transparent)~~
 - ~~Hardcoding on read .mp3 media.~~
-- Sliding Menu / Splash Screen have not been implemented.
+- ~~Sliding Menu~~ / Splash Screen have not been implemented.
 - ~~Progress bar~~(Need Overlay effect)
 - ~~Read Android local storage~~
 - Flexible Album info()
