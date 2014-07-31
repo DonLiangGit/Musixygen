@@ -20,5 +20,20 @@
         <item>12.This is What Makes Us Girls</item>
         <item> </item>
     </string-array>
-    
+
+    <string-array name="menu_item">
+        <item>Apple</item>
+        <item>Book</item>
+        <item>Cat</item>
+        <item>Dog</item>
+        <item>Eagle</item>
+        <item>Food</item>
+        <item>God</item>
+        <item>House</item>
+        <item>Iron</item>
+        <item>Jingle</item>
+        <item>Scroll</item>
+        <item>Or</item>
+        <item>Not!?</item>
+    </string-array>
 </resources>

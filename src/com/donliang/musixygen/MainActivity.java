@@ -2,7 +2,7 @@ package com.donliang.musixygen;
 
 import java.util.concurrent.TimeUnit;
 
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingActivity;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import android.app.Activity;
 import android.app.ActionBar;
@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -25,7 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Build;
 
-public class MainActivity extends SlidingActivity {
+public class MainActivity extends Activity {
 
 	MediaPlayer mediaPlayer;
 	private SeekBar songBar;
@@ -40,15 +41,32 @@ public class MainActivity extends SlidingActivity {
 	private Handler barHandler = new Handler();
 	
 	private ListView albumList;
+//	private ListView SlidingMenu_List;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
         setContentView(R.layout.testing_layout);
-		setBehindContentView(R.layout.activity_menu);
-		getSlidingMenu().setBehindOffset(100);
         
+//		setBehindContentView(R.layout.activity_menu);
+//		getSlidingMenu().setBehindOffset(100);
+		
+        SlidingMenu menu = new SlidingMenu(this);
+        menu.setMode(SlidingMenu.RIGHT);
+        menu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+        menu.setMenu(R.layout.activity_menu);
+		
+//		SlidingMenu_List = (ListView) findViewById(R.id.left_drawer);
+//		LayoutInflater SMinflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//		View SMview = SMinflater.inflate(R.layout.headerview, null);
+//		SlidingMenu_List.addHeaderView(SMview);
+		
+//        String[] SMdrawer_menu = this.getResources().getStringArray(R.array.menu_item);
+//        ArrayAdapter<String> SMadapter = new ArrayAdapter<String>(this, R.layout.drawer_list_item, SMdrawer_menu);
+//        SlidingMenu_List.setAdapter(SMadapter);
+        
+        // Main Activity
         albumList = (ListView)findViewById(R.id.album_list);
 		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View view = inflater.inflate(R.layout.control_button, null);
@@ -161,7 +179,8 @@ public class MainActivity extends SlidingActivity {
 //		getSlidingMenu().setBehindOffset(100);
 //	}
 	
-    private Runnable updatedSongTime = new Runnable() {
+
+	private Runnable updatedSongTime = new Runnable() {
 
     	@Override
 		public void run() {

@@ -3,7 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:clickable="true"
-    android:background="@color/layout_default"
+    android:background="@color/slidng_menu"
     tools:context="com.donliang.get.MainActivity$PlaceholderFragment" >
 
+    <ListView
+        android:id="@+id/left_drawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
+    </ListView>
 </FrameLayout>

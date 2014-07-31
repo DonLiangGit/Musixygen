@@ -3,5 +3,6 @@
 	<color name="button_default">#BF9cede4</color>
 	<color name="song_name">#8cfffa</color>
 	<color name="layout_default">#000000</color>  
-	<color name="text_default">#FFFFFF</color> 
+	<color name="text_default">#FFFFFF</color>
+	<color name="slidng_menu">#151516</color>
 </resources>

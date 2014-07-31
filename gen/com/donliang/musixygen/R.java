@@ -10,6 +10,7 @@ package com.donliang.musixygen;
 public final class R {
     public static final class array {
         public static final int album_item=0x7f090000;
+        public static final int menu_item=0x7f090001;
     }
     public static final class attr {
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
@@ -129,6 +130,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class color {
         public static final int button_default=0x7f060000;
         public static final int layout_default=0x7f060002;
+        public static final int slidng_menu=0x7f060004;
         public static final int song_name=0x7f060001;
         public static final int text_default=0x7f060003;
     }
@@ -150,40 +152,42 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int round_button_over=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f050018;
+        public static final int action_settings=0x7f050019;
         public static final int album_cover=0x7f050007;
-        public static final int album_list=0x7f050017;
+        public static final int album_list=0x7f050018;
         public static final int artist_name=0x7f05000c;
-        public static final int buttonLayout=0x7f050016;
+        public static final int buttonLayout=0x7f050017;
         public static final int container=0x7f050006;
-        public static final int forward_button=0x7f050010;
+        public static final int forward_button=0x7f050011;
         public static final int fullscreen=0x7f050003;
         public static final int left=0x7f050000;
+        public static final int left_drawer=0x7f05000f;
         public static final int loop_button=0x7f05000d;
         public static final int margin=0x7f050002;
         public static final int none=0x7f050004;
         public static final int pause_button=0x7f050008;
-        public static final int playTime=0x7f050013;
+        public static final int playTime=0x7f050014;
         public static final int play_button=0x7f050009;
-        public static final int rewind_button=0x7f05000f;
+        public static final int rewind_button=0x7f050010;
         public static final int right=0x7f050001;
         public static final int selected_view=0x7f050005;
-        public static final int slidingmenumain=0x7f050011;
+        public static final int slidingmenumain=0x7f050013;
         public static final int songBar=0x7f05000e;
         public static final int song_name=0x7f05000b;
         public static final int stop_button=0x7f05000a;
-        public static final int textView1=0x7f050015;
-        public static final int textView2=0x7f050014;
+        public static final int textView1=0x7f050016;
+        public static final int textView2=0x7f050015;
         public static final int txtItem=0x7f050012;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int activity_menu=0x7f030001;
         public static final int control_button=0x7f030002;
-        public static final int fragment_main=0x7f030003;
-        public static final int slidingmenumain=0x7f030004;
-        public static final int song_list_item=0x7f030005;
-        public static final int testing_layout=0x7f030006;
+        public static final int drawer_list_item=0x7f030003;
+        public static final int fragment_main=0x7f030004;
+        public static final int slidingmenumain=0x7f030005;
+        public static final int song_list_item=0x7f030006;
+        public static final int testing_layout=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f0b0000;
@@ -197,11 +201,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int hello_world=0x7f080001;
     }
     public static final class style {
-        /**  Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices. 
- Theme customizations available in newer API levels can go in
+        /** 
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here. 
+            backward-compatibility can go here.
+        
 
         Base application theme for API 11+. This theme completely replaces
         AppBaseTheme from res/values/styles.xml on API 11+ devices.
@@ -215,7 +223,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
  API 14 theme customizations can go here. 
          */
         public static final int AppBaseTheme=0x7f0a0000;
-        /**      Application theme. 
+        /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0a0001;
     }
