@@ -144,6 +144,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static final int activity_horizontal_margin=0x7f070000;
         public static final int activity_vertical_margin=0x7f070001;
+        public static final int slidingmenu_offset=0x7f070002;
     }
     public static final class drawable {
         public static final int album_cover=0x7f020000;
@@ -224,7 +225,6 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          */
         public static final int AppBaseTheme=0x7f0a0000;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f0a0001;
     }

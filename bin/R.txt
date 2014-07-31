@@ -21,6 +21,7 @@ int color song_name 0x7f060001
 int color text_default 0x7f060003
 int dimen activity_horizontal_margin 0x7f070000
 int dimen activity_vertical_margin 0x7f070001
+int dimen slidingmenu_offset 0x7f070002
 int drawable album_cover 0x7f020000
 int drawable ic_launcher 0x7f020001
 int drawable round_button 0x7f020002

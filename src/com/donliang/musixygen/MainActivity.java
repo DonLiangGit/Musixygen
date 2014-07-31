@@ -54,6 +54,7 @@ public class MainActivity extends Activity {
         SlidingMenu menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.RIGHT);
         menu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         menu.setMenu(R.layout.activity_menu);
 		
