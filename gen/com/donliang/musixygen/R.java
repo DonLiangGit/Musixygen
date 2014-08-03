@@ -129,6 +129,8 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class color {
         public static final int button_default=0x7f060000;
+        public static final int clicked=0x7f060006;
+        public static final int default_click=0x7f060005;
         public static final int layout_default=0x7f060002;
         public static final int slidng_menu=0x7f060004;
         public static final int song_name=0x7f060001;
@@ -149,11 +151,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class drawable {
         public static final int album_cover=0x7f020000;
         public static final int ic_launcher=0x7f020001;
-        public static final int round_button=0x7f020002;
-        public static final int round_button_over=0x7f020003;
+        public static final int list_item_bg=0x7f020002;
+        public static final int round_button=0x7f020003;
+        public static final int round_button_over=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f050019;
+        public static final int action_settings=0x7f05001b;
         public static final int album_cover=0x7f050007;
         public static final int album_list=0x7f050018;
         public static final int artist_name=0x7f05000c;
@@ -167,7 +170,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int margin=0x7f050002;
         public static final int none=0x7f050004;
         public static final int pause_button=0x7f050008;
-        public static final int playTime=0x7f050014;
+        public static final int playTime=0x7f050016;
         public static final int play_button=0x7f050009;
         public static final int rewind_button=0x7f050010;
         public static final int right=0x7f050001;
@@ -176,8 +179,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int songBar=0x7f05000e;
         public static final int song_name=0x7f05000b;
         public static final int stop_button=0x7f05000a;
-        public static final int textView1=0x7f050016;
-        public static final int textView2=0x7f050015;
+        public static final int text1=0x7f050014;
+        public static final int text2=0x7f050015;
+        public static final int textView1=0x7f050019;
+        public static final int textView2=0x7f05001a;
         public static final int txtItem=0x7f050012;
     }
     public static final class layout {

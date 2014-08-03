@@ -1,34 +1,43 @@
 package com.donliang.musixygen;
 
+import java.io.File;
+import java.io.FilenameFilter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.content.Context;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.ArrayAdapter;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.os.Build;
+import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivity extends Activity {
 
-	MediaPlayer mediaPlayer;
+	private MediaPlayer mediaPlayer = new MediaPlayer();
 	private SeekBar songBar;
 	private double startTime = 0;
 	private double lastTime = 0;
@@ -40,17 +49,23 @@ public class MainActivity extends Activity {
 	
 	private Handler barHandler = new Handler();
 	
-	private ListView albumList;
 //	private ListView SlidingMenu_List;
+
+	private File SDCard_Path = Environment.getExternalStorageDirectory();;
+	private File musicPathFile;
+	
+	private List<String> songs = new ArrayList<String>();
+	private final String Path = new String(SDCard_Path.toString() + "/Musixygen/");
+	
+	private ListView lv;
+	
+	ArrayList<Song> songsTest;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.testing_layout);
         
-//		setBehindContentView(R.layout.activity_menu);
-//		getSlidingMenu().setBehindOffset(100);
-		
         SlidingMenu menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.RIGHT);
         menu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
@@ -68,14 +83,53 @@ public class MainActivity extends Activity {
 //        SlidingMenu_List.setAdapter(SMadapter);
         
         // Main Activity
-        albumList = (ListView)findViewById(R.id.album_list);
-		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View view = inflater.inflate(R.layout.control_button, null);
-		albumList.addHeaderView(view);
+//        albumList = (ListView)findViewById(R.id.album_list);
+        lv = (ListView)findViewById(R.id.album_list);
+        checkAvail();
+        
+//		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//		View view = inflater.inflate(R.layout.control_button, null);
+//		lv.addHeaderView(view);
 		
-        String[] drawer_menu = this.getResources().getStringArray(R.array.album_item);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.song_list_item, drawer_menu);
-        albumList.setAdapter(adapter);
+		lv.setOnItemClickListener( new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View v, int position,
+					long id) {
+				// TODO Auto-generated method stub
+				// TODO Auto-generated method stub
+				Log.d("position", Path+songsTest.get(position).getFilenmae());
+				try {
+					v.setSelected(true);
+					mediaPlayer.reset();
+					mediaPlayer.setDataSource(Path+songsTest.get(position).getFilenmae());
+					mediaPlayer.prepare();
+					mediaPlayer.start();
+					
+	        		startTime = mediaPlayer.getCurrentPosition();
+	        		lastTime = mediaPlayer.getDuration();
+	        		songBar.setMax((int)lastTime);
+	        		songBar.setProgress((int)startTime);
+	        		barHandler.postDelayed(updatedSongTime, 100);
+	        		
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+        	
+        });
+//        String[] drawer_menu = this.getResources().getStringArray(R.array.album_item);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.song_list_item, drawer_menu);
+//        albumList.setAdapter(adapter);
         
         playTimeField = (TextView)findViewById(R.id.playTime);
 //        initSlidngMenuLV();
@@ -83,52 +137,48 @@ public class MainActivity extends Activity {
         songBar = (SeekBar)findViewById(R.id.songBar);
         
         
-        Button play = (Button)findViewById(R.id.play_button);
-        play.setOnClickListener(new View.OnClickListener() {       	
-        	@Override
-        	public void onClick(View v) {
-        		Uri path = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video_games);
-        		mediaPlayer = MediaPlayer.create(MainActivity.this, path);
-        		Toast.makeText(getBaseContext(), "play", Toast.LENGTH_SHORT ).show();
-        		mediaPlayer.start();
-        		
+//        Button play = (Button)findViewById(R.id.play_button);
+//        play.setOnClickListener(new View.OnClickListener() {       	
+//        	@Override
+//        	public void onClick(View v) {
+//        		Uri path = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video_games);
+//        		mediaPlayer = MediaPlayer.create(MainActivity.this, path);
+//        		Toast.makeText(getBaseContext(), "play", Toast.LENGTH_SHORT ).show();
+//        		mediaPlayer.start();
+//        		
         		// initialize seekbar progress
-        		startTime = mediaPlayer.getCurrentPosition();
-        		lastTime = mediaPlayer.getDuration();
-        		songBar.setMax((int)lastTime);
-        		songBar.setProgress((int)startTime);
-        		barHandler.postDelayed(updatedSongTime, 100);
-        	}
-        });
+
+//        	}
+//        });
 //        
-        Button stop = (Button)findViewById(R.id.stop_button);
-        stop.setOnClickListener(new View.OnClickListener() {       	
-        	@Override
-        	public void onClick(View v) {
-        		if (mediaPlayer.isPlaying()) {
-        			Toast.makeText(getBaseContext(), "stop", Toast.LENGTH_SHORT ).show();
-            		mediaPlayer.pause();
-            		mediaPlayer.seekTo(0);
-        		}
-        	}
-        });
+//        Button stop = (Button)findViewById(R.id.stop_button);
+//        stop.setOnClickListener(new View.OnClickListener() {       	
+//        	@Override
+//        	public void onClick(View v) {
+//        		if (mediaPlayer.isPlaying()) {
+//        			Toast.makeText(getBaseContext(), "stop", Toast.LENGTH_SHORT ).show();
+//            		mediaPlayer.pause();
+//            		mediaPlayer.seekTo(0);
+//        		}
+//        	}
+//        });
 //        
-        Button pause = (Button)findViewById(R.id.pause_button);
-        pause.setOnClickListener(new View.OnClickListener() {       	
-        	@Override
-        	public void onClick(View v) {
-        		if (mediaPlayer.isPlaying()) {
-        			Toast.makeText(getBaseContext(), "pause", Toast.LENGTH_SHORT ).show();
-            		mediaPlayer.pause();      			
-        		}
-        	}
-        });
+//        Button pause = (Button)findViewById(R.id.pause_button);
+//        pause.setOnClickListener(new View.OnClickListener() {       	
+//        	@Override
+//        	public void onClick(View v) {
+//        		if (mediaPlayer.isPlaying()) {
+//        			Toast.makeText(getBaseContext(), "pause", Toast.LENGTH_SHORT ).show();
+//            		mediaPlayer.pause();      			
+//        		}
+//        	}
+//        });
 //        
         Button loop = (Button)findViewById(R.id.loop_button);
         loop.setOnClickListener(new View.OnClickListener() {       	
         	@Override
         	public void onClick(View v) {
-        		if (!ButtonBoolean) {
+        		if (!ButtonBoolean && mediaPlayer != null ) {
 	        		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
 	        		mediaPlayer.setLooping(true); 
 	        		ButtonBoolean = true; 
@@ -140,33 +190,33 @@ public class MainActivity extends Activity {
         	}
         });
         
-        Button forward = (Button)findViewById(R.id.forward_button);
-        forward.setOnClickListener(new View.OnClickListener() {       	
-        	@Override
-        	public void onClick(View v) {
-        		temp = (int)startTime;
-        		if ( (temp+forwardTime) <= lastTime ) {
-        			startTime = startTime + forwardTime;
-        			mediaPlayer.seekTo((int)startTime);
-        		} else {
-        			Toast.makeText(getBaseContext(), "Cannot forward.", Toast.LENGTH_SHORT).show();
-        		}
-        	}
-        });
+//        Button forward = (Button)findViewById(R.id.forward_button);
+//        forward.setOnClickListener(new View.OnClickListener() {       	
+//        	@Override
+//        	public void onClick(View v) {
+//        		temp = (int)startTime;
+//        		if ( (temp+forwardTime) <= lastTime ) {
+//        			startTime = startTime + forwardTime;
+//        			mediaPlayer.seekTo((int)startTime);
+//        		} else {
+//        			Toast.makeText(getBaseContext(), "Cannot forward.", Toast.LENGTH_SHORT).show();
+//        		}
+//        	}
+//        });
         
-        Button rewind = (Button)findViewById(R.id.rewind_button);
-        rewind.setOnClickListener(new View.OnClickListener() {       	
-        	@Override
-        	public void onClick(View v) {
-        		temp = (int)startTime;
-        		if ( (temp - rewindTime) > 0) {
-        			startTime = startTime - rewindTime;
-        			mediaPlayer.seekTo((int)startTime);
-        		} else {
-        			Toast.makeText(getBaseContext(), "Cannot rewind", Toast.LENGTH_SHORT).show();
-        		}
-        	}
-        });
+//        Button rewind = (Button)findViewById(R.id.rewind_button);
+//        rewind.setOnClickListener(new View.OnClickListener() {       	
+//        	@Override
+//        	public void onClick(View v) {
+//        		temp = (int)startTime;
+//        		if ( (temp - rewindTime) > 0) {
+//        			startTime = startTime - rewindTime;
+//        			mediaPlayer.seekTo((int)startTime);
+//        		} else {
+//        			Toast.makeText(getBaseContext(), "Cannot rewind", Toast.LENGTH_SHORT).show();
+//        		}
+//        	}
+//        });
 //        if (savedInstanceState == null) {
 //            getFragmentManager().beginTransaction()
 //                    .add(R.id.container, new PlaceholderFragment())
@@ -174,12 +224,72 @@ public class MainActivity extends Activity {
 //        }
     }
 
-//	private void initSlidngMenuLV() {
-//		// TODO Auto-generated method stub
-//		setBehindContentView(R.layout.activity_menu);
-//		getSlidingMenu().setBehindOffset(100);
-//	}
-	
+    private void checkAvail() {
+		
+		// testing
+		songsTest = new ArrayList<Song>();
+		ArrayList<Map<String,String>> songsMap = new ArrayList<Map<String,String>>();
+		
+        // Check SD Card mounted or not
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_REMOVED)) {
+        	return;
+        } else { 
+//        	textview.setText("SD Card is here.");
+        	SDCard_Path = Environment.getExternalStorageDirectory();
+        }
+        // Check folder in SD Card exists or not
+        // Environment.getExternalStorageDirectory.getParent() returns '/storage/emulated'
+        // Environment.getExternalStorageDirectory.getName() returns' 0
+        // Full path return exact directory name in SDCard.
+        musicPathFile = new File(SDCard_Path.getParent() + "/" + SDCard_Path.getName() + "/Musixygen/");
+        if (musicPathFile.exists()) {
+        	final String path = musicPathFile.getPath();
+//        	Log.d("get", path);
+        }
+        if (musicPathFile.listFiles() == null) {
+//        	textview.setText("Cannot find files!");
+        	Log.d("get song","null");
+        } else {
+//        	textview.setText("Yo!");
+        	if (musicPathFile.listFiles(new mp3FileFilter()).length > 0) {
+        		for (File file : musicPathFile.listFiles(new mp3FileFilter())) {
+
+        			// get MediaMetaData for each song
+        			MediaMetadataRetriever songMetaData = new MediaMetadataRetriever();
+        			songMetaData.setDataSource(Path + file.getName());
+        			String artistName = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST);
+        			
+        			// time is retrieval
+        			int secs = Integer.parseInt(songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
+        			int mins = secs / 60;
+        			secs = secs % 60;
+        			String duration = String.format("%02d:%02d", mins, secs);
+        			
+        			if (artistName == null) {
+        				artistName = "Unknown";
+        			}
+        			
+        			// customized listview 7.31 testing
+        			Song s = new Song();
+        			s.setFilename(file.getName());
+        			s.setDuration(duration);
+        			songsTest.add(s);
+        			
+        			Map<String, String> mapSongInfo = convertSongToMap(s);
+        			songsMap.add(mapSongInfo);
+        			
+//        			songs.add(file.getName());
+        			
+        		}
+        		
+        		SimpleAdapter adapter = new SimpleAdapter(this,songsMap,R.layout.song_list_item, new String[]{"songName","duration"},new int[]{R.id.text1, R.id.text2});
+        		lv.setAdapter(adapter);
+        		
+//        		ArrayAdapter<String> songList = new ArrayAdapter<String>(this, R.layout.list_item, R.id.text1, songs);
+//        		lv.setAdapter(songList);
+        	}       	
+        }	
+	}
 
 	private Runnable updatedSongTime = new Runnable() {
 
@@ -200,6 +310,14 @@ public class MainActivity extends Activity {
     	
     };
 
+	private Map<String, String> convertSongToMap(Song s) {
+		// TODO Auto-generated method stub
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("songName", s.getFilenmae());
+		map.put("duration", s.getDuration());
+		return map;
+	}
+	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         
@@ -247,6 +365,10 @@ public class MainActivity extends Activity {
 		super.onDestroy();
 	}
     
-    
+	class mp3FileFilter implements FilenameFilter {
+		public boolean accept(File dir, String name) {
+			return (name.endsWith(".mp3") || name.endsWith(".MP3"));
+		}
+	}
 
 }

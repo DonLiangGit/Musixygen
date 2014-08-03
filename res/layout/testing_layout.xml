@@ -10,7 +10,7 @@
     <ImageView
         android:id="@+id/album_cover"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="380dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:fitsSystemWindows="true"
@@ -61,25 +61,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/text_default"
         android:textSize="20dp" />
-
-	<TextView
-	    android:id="@+id/textView2"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignBottom="@+id/textView1"
-	    android:textColor="@color/text_default"
-	    android:layout_alignRight="@+id/loop_button"
-	    android:text="Share" />
-
-	<TextView
-	    android:id="@+id/textView1"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/artist_name"
-	    android:textColor="@color/text_default"
-	    android:layout_alignParentTop="true"
-	    android:layout_marginTop="35dp"
-	    android:text="Back" />
 
 	<SeekBar
 	    android:id="@+id/songBar"
@@ -136,6 +117,24 @@
 	    android:orientation="vertical" >
     </ListView>
 
+	<TextView
+	    android:id="@+id/textView1"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/artist_name"
+	    android:layout_alignParentTop="true"
+	    android:layout_marginTop="15dp"
+	    android:text="Back"
+	    android:textColor="@color/text_default" />
 
+	<TextView
+	    android:id="@+id/textView2"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBaseline="@+id/textView1"
+	    android:layout_alignBottom="@+id/textView1"
+	    android:layout_alignRight="@+id/loop_button"
+	    android:text="Share"
+	    android:textColor="@color/text_default" />
     
 </RelativeLayout>
