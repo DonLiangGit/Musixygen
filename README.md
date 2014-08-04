@@ -14,6 +14,7 @@ Musixygen
 * iOS like transparent statusbar and navigation bar.
 * listview with header.
 * Choosing MediaPlayer instead of Soundpool or AudioTrack [Difference in details](http://www.wiseandroid.com/post/2010/07/13/Intro-to-the-three-Android-Audio-APIs.aspx)
+* Using [Tagr for Mac](http://www.macupdate.com/app/mac/30610/tagr) to set your mp3s' properties
 
 =
 Known Issues:
@@ -23,7 +24,7 @@ Known Issues:
 - ~~Sliding Menu~~ / Splash Screen have not been implemented.
 - ~~Progress bar~~(Need Overlay effect)
 - ~~Read Android local storage~~
-- Flexible Album info()
+- ~~Flexible Album info()~~
 - Overlay Progressbar
 - Auto searching related song put into a list(parser)
 - Play songs in ~~single repeat~~, repeat all, order, shuffle
