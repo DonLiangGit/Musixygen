@@ -38,7 +38,7 @@
         android:layout_marginBottom="56dp"
         android:layout_marginLeft="23dp"
         android:text="Video Games"
-        android:textColor="@color/song_name"
+        android:textColor="@color/text_default"
         android:textSize="35sp" />
     
     <TextView
@@ -133,20 +133,20 @@
 	    android:id="@+id/textView1"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/artist_name"
-	    android:layout_alignParentTop="true"
-	    android:layout_marginTop="15dp"
-	    android:text="Back"
+	    android:layout_alignLeft="@+id/playTime"
+	    android:layout_below="@+id/buttonLayout"
+	    android:layout_marginTop="10dp"
+	    android:text="Shuffle"
 	    android:textColor="@color/text_default" />
 
 	<TextView
 	    android:id="@+id/textView2"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignBaseline="@+id/textView1"
-	    android:layout_alignBottom="@+id/textView1"
 	    android:layout_alignRight="@+id/loop_button"
+	    android:layout_below="@+id/buttonLayout"
+	    android:layout_marginTop="10dp"
 	    android:text="Share"
 	    android:textColor="@color/text_default" />
-    
+ 
 </RelativeLayout>

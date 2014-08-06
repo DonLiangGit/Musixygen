@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+//import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -16,6 +18,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -50,6 +53,11 @@ public class MainActivity extends Activity {
 	private int forwardTime = 10000;
 	private int rewindTime = 10000;
 	private TextView playTimeField;
+	
+	private TextView currentState;
+//	public static final String currentPlay = "Currently playing";
+//	public static final String currentPause = "Currently pause";
+			
 	private boolean ButtonBoolean = false;
 	
 	private int positionTag = 0;
@@ -58,6 +66,7 @@ public class MainActivity extends Activity {
 	private MediaMetadataRetriever songMainMeta = new MediaMetadataRetriever();
 	private ImageView album_artFront = null;
 	private ImageView album_artBack = null;
+	private TextView song_name;
 	
 	private Handler barHandler = new Handler();
 	
@@ -67,8 +76,7 @@ public class MainActivity extends Activity {
 	private File musicPathFile;
 	
 	private List<String> songs = new ArrayList<String>();
-	private final String Path = new String(SDCard_Path.toString() + "/Musixygen/");
-	
+	private final String Path = new String(SDCard_Path.toString() + "/Musixygen/");	
 	private ListView lv;
 	
 	ArrayList<Song> songsTest;
@@ -78,33 +86,24 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+    	// Sliding Menu
 //        SlidingMenu menu = new SlidingMenu(this);
 //        menu.setMode(SlidingMenu.RIGHT);
 //        menu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
 //        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 //        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 //        menu.setMenu(R.layout.activity_menu);
+        UIInit();
+        checkAvail();
+
 		
 //		SlidingMenu_List = (ListView) findViewById(R.id.left_drawer);
 //		LayoutInflater SMinflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //		View SMview = SMinflater.inflate(R.layout.headerview, null);
 //		SlidingMenu_List.addHeaderView(SMview);
-		
-//        String[] SMdrawer_menu = this.getResources().getStringArray(R.array.menu_item);
-//        ArrayAdapter<String> SMadapter = new ArrayAdapter<String>(this, R.layout.drawer_list_item, SMdrawer_menu);
-//        SlidingMenu_List.setAdapter(SMadapter);
-        
+		  
         // Main Activity
 //        albumList = (ListView)findViewById(R.id.album_list);
-        lv = (ListView)findViewById(R.id.album_list);
-        checkAvail();
-        
-        album_artFront = (ImageView)findViewById(R.id.album_front);
-        album_artBack = (ImageView)findViewById(R.id.album_back);
-        
-//		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//		View view = inflater.inflate(R.layout.control_button, null);
-//		lv.addHeaderView(view);
         
 		lv.setOnItemClickListener( new OnItemClickListener() {
 			View view2;
@@ -130,9 +129,15 @@ public class MainActivity extends Activity {
 						resumeTag = mediaPlayer.getCurrentPosition();
 						Log.d("pause","pause");
 					} else if (positionTag == position && mediaPlayer.isPlaying() == false) {
-						mediaPlayer.seekTo(resumeTag);
-						mediaPlayer.start();
-						Log.d("resume","resume");
+						if (resumeTag == 0) {
+							mediaPlayer.setDataSource(Path+songsTest.get(position).getFilenmae());
+							mediaPlayer.prepare();
+							mediaPlayer.start();
+						} else {
+							mediaPlayer.seekTo(resumeTag);
+							mediaPlayer.start();
+							Log.d("resume","resume");
+						}
 					} else {
 						songMainMeta.setDataSource(Path+songsTest.get(position).getFilenmae());
 	        			// Retrieve the album art
@@ -144,6 +149,16 @@ public class MainActivity extends Activity {
 	        				
 	        				final Animation albumAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
 	        				album_artFront.startAnimation(albumAnimation);
+	        				
+	        				// Imageview Animation Overlay
+	        				Handler handler = new Handler();
+	        				handler.postDelayed(new Runnable() {
+	        				    @Override
+	        				    public void run() {
+	        				        album_artBack.setImageBitmap(songImage);
+	        				    }
+	        				}, 1000);
+	        				
 	        			} else {
 	        				album_artFront.setImageResource(R.drawable.album_cover);
 	        			}
@@ -181,66 +196,7 @@ public class MainActivity extends Activity {
 //        String[] drawer_menu = this.getResources().getStringArray(R.array.album_item);
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.song_list_item, drawer_menu);
 //        albumList.setAdapter(adapter);
-        
-        playTimeField = (TextView)findViewById(R.id.playTime);
-//        initSlidngMenuLV();
-        
-        songBar = (SeekBar)findViewById(R.id.songBar);
-        
-        
-//        Button play = (Button)findViewById(R.id.play_button);
-//        play.setOnClickListener(new View.OnClickListener() {       	
-//        	@Override
-//        	public void onClick(View v) {
-//        		Uri path = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video_games);
-//        		mediaPlayer = MediaPlayer.create(MainActivity.this, path);
-//        		Toast.makeText(getBaseContext(), "play", Toast.LENGTH_SHORT ).show();
-//        		mediaPlayer.start();
-//        		
-        		// initialize seekbar progress
-
-//        	}
-//        });
-//        
-//        Button stop = (Button)findViewById(R.id.stop_button);
-//        stop.setOnClickListener(new View.OnClickListener() {       	
-//        	@Override
-//        	public void onClick(View v) {
-//        		if (mediaPlayer.isPlaying()) {
-//        			Toast.makeText(getBaseContext(), "stop", Toast.LENGTH_SHORT ).show();
-//            		mediaPlayer.pause();
-//            		mediaPlayer.seekTo(0);
-//        		}
-//        	}
-//        });
-//        
-//        Button pause = (Button)findViewById(R.id.pause_button);
-//        pause.setOnClickListener(new View.OnClickListener() {       	
-//        	@Override
-//        	public void onClick(View v) {
-//        		if (mediaPlayer.isPlaying()) {
-//        			Toast.makeText(getBaseContext(), "pause", Toast.LENGTH_SHORT ).show();
-//            		mediaPlayer.pause();      			
-//        		}
-//        	}
-//        });
-//        
-        Button loop = (Button)findViewById(R.id.loop_button);
-        loop.setOnClickListener(new View.OnClickListener() {       	
-        	@Override
-        	public void onClick(View v) {
-        		if (!ButtonBoolean && mediaPlayer != null ) {
-	        		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
-	        		mediaPlayer.setLooping(true); 
-	        		ButtonBoolean = true; 
-        		} else {
-            		Toast.makeText(getBaseContext(), "looping is false", Toast.LENGTH_SHORT ).show();
-            		mediaPlayer.setLooping(false); 
-            		ButtonBoolean = false; 
-        		}     		
-        	}
-        });
-        
+                   
 //        Button forward = (Button)findViewById(R.id.forward_button);
 //        forward.setOnClickListener(new View.OnClickListener() {       	
 //        	@Override
@@ -273,9 +229,42 @@ public class MainActivity extends Activity {
 //                    .add(R.id.container, new PlaceholderFragment())
 //                    .commit();
 //        }
+
     }
 
-    private void checkAvail() {
+    private void UIInit() {
+		// TODO Auto-generated method stub
+        
+        album_artFront = (ImageView)findViewById(R.id.album_front);
+        album_artBack = (ImageView)findViewById(R.id.album_back);
+        
+        song_name = (TextView)findViewById(R.id.song_name);
+        song_name.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Aaargh.ttf"));
+//        currentState = (TextView)findViewById(R.id.currentState);
+        
+        lv = (ListView)findViewById(R.id.album_list);
+        
+        playTimeField = (TextView)findViewById(R.id.playTime);
+        songBar = (SeekBar)findViewById(R.id.songBar);
+        
+        Button loop = (Button)findViewById(R.id.loop_button);
+        loop.setOnClickListener(new View.OnClickListener() {       	
+        	@Override
+        	public void onClick(View v) {
+        		if (!ButtonBoolean && mediaPlayer != null ) {
+	        		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
+	        		mediaPlayer.setLooping(true); 
+	        		ButtonBoolean = true; 
+        		} else {
+            		Toast.makeText(getBaseContext(), "looping is false", Toast.LENGTH_SHORT ).show();
+            		mediaPlayer.setLooping(false); 
+            		ButtonBoolean = false; 
+        		}     		
+        	}
+        });
+	}
+
+	private void checkAvail() {
 		
 		// testing
 		songsTest = new ArrayList<Song>();
@@ -419,8 +408,7 @@ public class MainActivity extends Activity {
             return rootView;
         }
     }
-
-    
+   
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
