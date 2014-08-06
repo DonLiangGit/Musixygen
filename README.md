@@ -29,5 +29,5 @@ Known Issues:
 - ~~Flexible Album info()~~ To retrieve more properties from an mp3 [Google API](http://developer.android.com/reference/android/media/MediaMetadataRetriever.html)
 - Overlay Progressbar
 - Auto searching related song put into a list(parser)
-- Play songs in ~~single repeat~~, repeat all, order, shuffle
+- Play songs in ~~single repeat~~, repeat all, order, shuffle [Google API](http://developer.android.com/reference/android/media/MediaPlayer.html#setOnCompletionListener(android.media.MediaPlayer.OnCompletionListener))
 - Issues during the developement process will be stated in detail in sidebar `issues`
