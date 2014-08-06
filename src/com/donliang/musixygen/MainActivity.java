@@ -9,9 +9,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
@@ -25,8 +28,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SimpleAdapter;
@@ -49,6 +55,10 @@ public class MainActivity extends Activity {
 	private int positionTag = 0;
 	private int resumeTag = 0;
 	
+	private MediaMetadataRetriever songMainMeta = new MediaMetadataRetriever();
+	private ImageView album_artFront = null;
+	private ImageView album_artBack = null;
+	
 	private Handler barHandler = new Handler();
 	
 //	private ListView SlidingMenu_List;
@@ -66,7 +76,7 @@ public class MainActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.testing_layout);
+        setContentView(R.layout.activity_main);
         
 //        SlidingMenu menu = new SlidingMenu(this);
 //        menu.setMode(SlidingMenu.RIGHT);
@@ -89,6 +99,9 @@ public class MainActivity extends Activity {
         lv = (ListView)findViewById(R.id.album_list);
         checkAvail();
         
+        album_artFront = (ImageView)findViewById(R.id.album_front);
+        album_artBack = (ImageView)findViewById(R.id.album_back);
+        
 //		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //		View view = inflater.inflate(R.layout.control_button, null);
 //		lv.addHeaderView(view);
@@ -99,10 +112,10 @@ public class MainActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				v.setSelected(true);
 				if((select_item == -1) || (select_item == position)){
-					v.setBackgroundColor(Color.parseColor("#268cfffa"));
+					v.setBackgroundColor(Color.parseColor("#A69cede4"));
 				} else {
 					view2.setBackground(null);
-					v.setBackgroundColor(Color.parseColor("#268cfffa"));
+					v.setBackgroundColor(Color.parseColor("#A69cede4"));
 				}
 				view2 = v;
 				select_item=position;
@@ -121,6 +134,19 @@ public class MainActivity extends Activity {
 						mediaPlayer.start();
 						Log.d("resume","resume");
 					} else {
+						songMainMeta.setDataSource(Path+songsTest.get(position).getFilenmae());
+	        			// Retrieve the album art
+	        			byte[] art = null;
+	        			if (songMainMeta.getEmbeddedPicture() != null) {
+	        				art = songMainMeta.getEmbeddedPicture();       				
+	        				final Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
+	        				album_artFront.setImageBitmap(songImage);
+	        				
+	        				final Animation albumAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+	        				album_artFront.startAnimation(albumAnimation);
+	        			} else {
+	        				album_artFront.setImageResource(R.drawable.album_cover);
+	        			}
 						
 						positionTag = position;
 						

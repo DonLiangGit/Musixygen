@@ -8,9 +8,13 @@
 package com.donliang.musixygen;
 
 public final class R {
+    public static final class anim {
+        public static final int albumart_translate=0x7f040000;
+        public static final int fade_in=0x7f040001;
+    }
     public static final class array {
-        public static final int album_item=0x7f090000;
-        public static final int menu_item=0x7f090001;
+        public static final int album_item=0x7f0a0000;
+        public static final int menu_item=0x7f0a0001;
     }
     public static final class attr {
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
@@ -128,13 +132,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int viewBehind=0x7f010002;
     }
     public static final class color {
-        public static final int button_default=0x7f060000;
-        public static final int default_color=0x7f060005;
-        public static final int layout_default=0x7f060002;
-        public static final int pressed_color=0x7f060006;
-        public static final int slidng_menu=0x7f060004;
-        public static final int song_name=0x7f060001;
-        public static final int text_default=0x7f060003;
+        public static final int button_default=0x7f070000;
+        public static final int default_color=0x7f070005;
+        public static final int layout_default=0x7f070002;
+        public static final int pressed_color=0x7f070006;
+        public static final int slidng_menu=0x7f070004;
+        public static final int song_name=0x7f070001;
+        public static final int text_default=0x7f070003;
     }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
@@ -144,9 +148,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively).
     
          */
-        public static final int activity_horizontal_margin=0x7f070000;
-        public static final int activity_vertical_margin=0x7f070001;
-        public static final int slidingmenu_offset=0x7f070002;
+        public static final int activity_horizontal_margin=0x7f080000;
+        public static final int activity_vertical_margin=0x7f080001;
+        public static final int slidingmenu_offset=0x7f080002;
     }
     public static final class drawable {
         public static final int album_cover=0x7f020000;
@@ -156,34 +160,36 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int round_button_over=0x7f020004;
     }
     public static final class id {
-        public static final int action_settings=0x7f05001b;
-        public static final int album_cover=0x7f050007;
-        public static final int album_list=0x7f050018;
-        public static final int artist_name=0x7f05000c;
-        public static final int buttonLayout=0x7f050017;
-        public static final int container=0x7f050006;
-        public static final int forward_button=0x7f050011;
-        public static final int fullscreen=0x7f050003;
-        public static final int left=0x7f050000;
-        public static final int left_drawer=0x7f05000f;
-        public static final int loop_button=0x7f05000d;
-        public static final int margin=0x7f050002;
-        public static final int none=0x7f050004;
-        public static final int pause_button=0x7f050008;
-        public static final int playTime=0x7f050016;
-        public static final int play_button=0x7f050009;
-        public static final int rewind_button=0x7f050010;
-        public static final int right=0x7f050001;
-        public static final int selected_view=0x7f050005;
-        public static final int slidingmenumain=0x7f050013;
-        public static final int songBar=0x7f05000e;
-        public static final int song_name=0x7f05000b;
-        public static final int stop_button=0x7f05000a;
-        public static final int text1=0x7f050014;
-        public static final int text2=0x7f050015;
-        public static final int textView1=0x7f050019;
-        public static final int textView2=0x7f05001a;
-        public static final int txtItem=0x7f050012;
+        public static final int action_settings=0x7f06001d;
+        public static final int album_back=0x7f060007;
+        public static final int album_cover=0x7f06000f;
+        public static final int album_front=0x7f060008;
+        public static final int album_list=0x7f060010;
+        public static final int artist_name=0x7f06000c;
+        public static final int buttonLayout=0x7f06000e;
+        public static final int container=0x7f060006;
+        public static final int forward_button=0x7f060015;
+        public static final int fullscreen=0x7f060003;
+        public static final int left=0x7f060000;
+        public static final int left_drawer=0x7f060013;
+        public static final int loop_button=0x7f06000b;
+        public static final int margin=0x7f060002;
+        public static final int none=0x7f060004;
+        public static final int pause_button=0x7f060018;
+        public static final int playTime=0x7f06000a;
+        public static final int play_button=0x7f060016;
+        public static final int rewind_button=0x7f060014;
+        public static final int right=0x7f060001;
+        public static final int selected_view=0x7f060005;
+        public static final int slidingmenumain=0x7f06001a;
+        public static final int songBar=0x7f06000d;
+        public static final int song_name=0x7f060009;
+        public static final int stop_button=0x7f060017;
+        public static final int text1=0x7f06001b;
+        public static final int text2=0x7f06001c;
+        public static final int textView1=0x7f060011;
+        public static final int textView2=0x7f060012;
+        public static final int txtItem=0x7f060019;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
@@ -196,15 +202,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int testing_layout=0x7f030007;
     }
     public static final class menu {
-        public static final int main=0x7f0b0000;
+        public static final int main=0x7f0c0000;
     }
     public static final class raw {
-        public static final int video_games=0x7f040000;
+        public static final int video_games=0x7f050000;
     }
     public static final class string {
-        public static final int action_settings=0x7f080002;
-        public static final int app_name=0x7f080000;
-        public static final int hello_world=0x7f080001;
+        public static final int action_settings=0x7f090002;
+        public static final int app_name=0x7f090000;
+        public static final int hello_world=0x7f090001;
     }
     public static final class style {
         /** 
@@ -228,10 +234,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f0a0000;
+        public static final int AppBaseTheme=0x7f0b0000;
         /**  Application theme. 
          */
-        public static final int AppTheme=0x7f0a0001;
+        public static final int AppTheme=0x7f0b0001;
     }
     public static final class styleable {
         /** Attributes that can be used with a SlidingMenu.
