@@ -129,9 +129,9 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     }
     public static final class color {
         public static final int button_default=0x7f060000;
-        public static final int clicked=0x7f060006;
-        public static final int default_click=0x7f060005;
+        public static final int default_color=0x7f060005;
         public static final int layout_default=0x7f060002;
+        public static final int pressed_color=0x7f060006;
         public static final int slidng_menu=0x7f060004;
         public static final int song_name=0x7f060001;
         public static final int text_default=0x7f060003;

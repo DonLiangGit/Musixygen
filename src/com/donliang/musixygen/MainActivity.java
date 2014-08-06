@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.graphics.Color;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -47,6 +47,9 @@ public class MainActivity extends Activity {
 	private TextView playTimeField;
 	private boolean ButtonBoolean = false;
 	
+	private int positionTag = 0;
+	private int resumeTag = 0;
+	
 	private Handler barHandler = new Handler();
 	
 //	private ListView SlidingMenu_List;
@@ -66,12 +69,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.testing_layout);
         
-        SlidingMenu menu = new SlidingMenu(this);
-        menu.setMode(SlidingMenu.RIGHT);
-        menu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-        menu.setMenu(R.layout.activity_menu);
+//        SlidingMenu menu = new SlidingMenu(this);
+//        menu.setMode(SlidingMenu.RIGHT);
+//        menu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
+//        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+//        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+//        menu.setMenu(R.layout.activity_menu);
 		
 //		SlidingMenu_List = (ListView) findViewById(R.id.left_drawer);
 //		LayoutInflater SMinflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -90,26 +93,49 @@ public class MainActivity extends Activity {
 //		LayoutInflater inflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 //		View view = inflater.inflate(R.layout.control_button, null);
 //		lv.addHeaderView(view);
-		
+        
 		lv.setOnItemClickListener( new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View v, int position,
-					long id) {
+			View view2;
+			int select_item = -1;
+			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+				v.setSelected(true);
+				if((select_item == -1) || (select_item == position)){
+					v.setBackgroundColor(Color.parseColor("#268cfffa"));
+				} else {
+					view2.setBackground(null);
+					v.setBackgroundColor(Color.parseColor("#268cfffa"));
+				}
+				view2 = v;
+				select_item=position;
 				// TODO Auto-generated method stub
 				// TODO Auto-generated method stub
 				Log.d("position", Path+songsTest.get(position).getFilenmae());
 				try {
 					v.setSelected(true);
-					mediaPlayer.reset();
-					mediaPlayer.setDataSource(Path+songsTest.get(position).getFilenmae());
-					mediaPlayer.prepare();
-					mediaPlayer.start();
 					
-	        		startTime = mediaPlayer.getCurrentPosition();
-	        		lastTime = mediaPlayer.getDuration();
-	        		songBar.setMax((int)lastTime);
-	        		songBar.setProgress((int)startTime);
-	        		barHandler.postDelayed(updatedSongTime, 100);
+					if (positionTag == position && mediaPlayer.isPlaying() == true) {
+						mediaPlayer.pause();
+						resumeTag = mediaPlayer.getCurrentPosition();
+						Log.d("pause","pause");
+					} else if (positionTag == position && mediaPlayer.isPlaying() == false) {
+						mediaPlayer.seekTo(resumeTag);
+						mediaPlayer.start();
+						Log.d("resume","resume");
+					} else {
+						
+						positionTag = position;
+						
+						mediaPlayer.reset();
+						mediaPlayer.setDataSource(Path+songsTest.get(position).getFilenmae());
+						mediaPlayer.prepare();
+						mediaPlayer.start();
+						
+		        		startTime = mediaPlayer.getCurrentPosition();
+		        		lastTime = mediaPlayer.getDuration();
+		        		songBar.setMax((int)lastTime);
+		        		songBar.setProgress((int)startTime);
+		        		barHandler.postDelayed(updatedSongTime, 100);
+					}
 	        		
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
@@ -292,10 +318,10 @@ public class MainActivity extends Activity {
 	}
 
 	private Runnable updatedSongTime = new Runnable() {
-
     	@Override
 		public void run() {
 			// TODO Auto-generated method stub
+    		// Here we got an exception.
 			startTime = mediaPlayer.getCurrentPosition();
 			// Dynamic Time
 			playTimeField.setText(String.format("%d:%02d",
@@ -306,8 +332,7 @@ public class MainActivity extends Activity {
 			
 			songBar.setProgress((int)startTime);
 			barHandler.postDelayed(this, 100);
-		}
-    	
+		}    	
     };
 
 	private Map<String, String> convertSongToMap(Song s) {
@@ -353,6 +378,13 @@ public class MainActivity extends Activity {
             return rootView;
         }
     }
+
+    
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+		super.onBackPressed();
+	}
 
 	@Override
 	protected void onDestroy() {

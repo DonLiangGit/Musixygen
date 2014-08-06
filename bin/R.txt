@@ -15,9 +15,9 @@ int attr touchModeBehind 0x7f010007
 int attr viewAbove 0x7f010001
 int attr viewBehind 0x7f010002
 int color button_default 0x7f060000
-int color clicked 0x7f060006
-int color default_click 0x7f060005
+int color default_color 0x7f060005
 int color layout_default 0x7f060002
+int color pressed_color 0x7f060006
 int color slidng_menu 0x7f060004
 int color song_name 0x7f060001
 int color text_default 0x7f060003
