@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -284,21 +283,35 @@ public class MainActivity extends Activity {
         			MediaMetadataRetriever songMetaData = new MediaMetadataRetriever();
         			songMetaData.setDataSource(Path + file.getName());
         			String artistName = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST);
+	    			if (artistName == null) {
+	    				artistName = "Unknown";
+	    			}
         			
-        			// time is retrieval
+	    			// Retrieve the duration
         			int secs = Integer.parseInt(songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)) / 1000;
         			int mins = secs / 60;
         			secs = secs % 60;
         			String duration = String.format("%02d:%02d", mins, secs);
         			
-        			if (artistName == null) {
-        				artistName = "Unknown";
+        			// Retrieve the artist name
+        			String singerName = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+        			if (singerName == null || singerName.equals("")) {
+        				singerName = "Unknown";
+        			}
+
+        			
+        			// Retrieve the song title
+        			String songTitle = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+        			if (songTitle == null || songTitle.equals("")) {
+        				songTitle = "Unknown";
         			}
         			
         			// customized listview 7.31 testing
         			Song s = new Song();
         			s.setFilename(file.getName());
+        			s.setSinger(singerName);
         			s.setDuration(duration);
+           			s.setTitle(songTitle);
         			songsTest.add(s);
         			
         			Map<String, String> mapSongInfo = convertSongToMap(s);
@@ -308,7 +321,7 @@ public class MainActivity extends Activity {
         			
         		}
         		
-        		SimpleAdapter adapter = new SimpleAdapter(this,songsMap,R.layout.song_list_item, new String[]{"songName","duration"},new int[]{R.id.text1, R.id.text2});
+        		SimpleAdapter adapter = new SimpleAdapter(this,songsMap,R.layout.song_list_item, new String[]{"songTitle","duration"},new int[]{R.id.text1, R.id.text2});
         		lv.setAdapter(adapter);
         		
 //        		ArrayAdapter<String> songList = new ArrayAdapter<String>(this, R.layout.list_item, R.id.text1, songs);
@@ -338,8 +351,10 @@ public class MainActivity extends Activity {
 	private Map<String, String> convertSongToMap(Song s) {
 		// TODO Auto-generated method stub
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("songName", s.getFilenmae());
+		map.put("songPath", s.getFilenmae());
 		map.put("duration", s.getDuration());
+		map.put("singerName", s.getSinger());
+		map.put("songTitle", s.getTitle());
 		return map;
 	}
 	
