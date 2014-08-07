@@ -37,9 +37,9 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="56dp"
         android:layout_marginLeft="23dp"
-        android:text="Gotdamn"
+        android:text="Video Games"
         android:textColor="@color/text_default"
-        android:textSize="35sp" />
+        android:textSize="30sp" />
         
     <TextView
         android:id="@+id/artist_name"

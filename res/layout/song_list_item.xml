@@ -9,7 +9,7 @@
 	    android:layout_height="wrap_content"
 	    android:padding="10dp"
 	    android:text="song name"
-	    android:textColor="#DDE1E1"/>
+	    android:textColor="#b3b1b1"/>
 
     <TextView
         android:id="@+id/text2"
@@ -20,6 +20,6 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
         android:text="duration"
-        android:textColor="#DDE1E1" />
+        android:textColor="#b3b1b1" />
     
 </RelativeLayout>

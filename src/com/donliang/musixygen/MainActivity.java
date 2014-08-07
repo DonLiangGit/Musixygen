@@ -12,6 +12,7 @@ import java.util.concurrent.TimeUnit;
 //import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -54,7 +55,7 @@ public class MainActivity extends Activity {
 	private int rewindTime = 10000;
 	private TextView playTimeField;
 	
-	private TextView currentState;
+//	private TextView currentState;
 //	public static final String currentPlay = "Currently playing";
 //	public static final String currentPause = "Currently pause";
 			
@@ -239,8 +240,8 @@ public class MainActivity extends Activity {
         album_artBack = (ImageView)findViewById(R.id.album_back);
         
         song_name = (TextView)findViewById(R.id.song_name);
-        song_name.setText("GOTDAMN");
-        song_name.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/ostrich.ttf"));
+//        song_name.setText("GOTDAMN");
+//        song_name.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/ostrich.ttf"));
 //        currentState = (TextView)findViewById(R.id.currentState);
         
         lv = (ListView)findViewById(R.id.album_list);
@@ -293,6 +294,7 @@ public class MainActivity extends Activity {
         } else {
 //        	textview.setText("Yo!");
         	if (musicPathFile.listFiles(new mp3FileFilter()).length > 0) {
+        		int songID = 1;
         		for (File file : musicPathFile.listFiles(new mp3FileFilter())) {
 
         			// get MediaMetaData for each song
@@ -321,12 +323,16 @@ public class MainActivity extends Activity {
         				songTitle = "Unknown";
         			}
         			
-        			// customized listview 7.31 testing
         			Song s = new Song();
+        			
+        			String songListID = Integer.toString(songID) + ".";
+        			
+        			
         			s.setFilename(file.getName());
         			s.setSinger(singerName);
         			s.setDuration(duration);
-           			s.setTitle(songTitle);
+           			s.setTitle(songListID + songTitle);
+           			songID = songID + 1;
         			songsTest.add(s);
         			
         			Map<String, String> mapSongInfo = convertSongToMap(s);
