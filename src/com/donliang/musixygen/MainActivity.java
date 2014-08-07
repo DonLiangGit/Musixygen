@@ -239,7 +239,8 @@ public class MainActivity extends Activity {
         album_artBack = (ImageView)findViewById(R.id.album_back);
         
         song_name = (TextView)findViewById(R.id.song_name);
-        song_name.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/Aaargh.ttf"));
+        song_name.setText("GOTDAMN");
+        song_name.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/ostrich.ttf"));
 //        currentState = (TextView)findViewById(R.id.currentState);
         
         lv = (ListView)findViewById(R.id.album_list);
@@ -313,8 +314,7 @@ public class MainActivity extends Activity {
         			if (singerName == null || singerName.equals("")) {
         				singerName = "Unknown";
         			}
-
-        			
+      			
         			// Retrieve the song title
         			String songTitle = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
         			if (songTitle == null || songTitle.equals("")) {

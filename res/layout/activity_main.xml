@@ -37,31 +37,9 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="56dp"
         android:layout_marginLeft="23dp"
-        android:text="Video Games"
+        android:text="Gotdamn"
         android:textColor="@color/text_default"
         android:textSize="35sp" />
-    
-    <TextView
-	    android:id="@+id/playTime"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/song_name"
-	    android:layout_below="@+id/loop_button"
-	    android:text="0:00"
-	    android:textAppearance="?android:attr/textAppearanceLarge"
-	    android:textColor="@color/text_default"
-	    android:textSize="20dp" />
-
-    <Button
-        android:id="@+id/loop_button"
-        android:layout_width="50sp"
-        android:layout_height="50sp"
-        android:layout_alignBottom="@+id/song_name"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="14dp"
-        android:background="@drawable/round_button_over"
-        android:text="Loop"
-        android:textColor="@color/text_default" />
         
     <TextView
         android:id="@+id/artist_name"
@@ -73,13 +51,6 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/text_default"
         android:textSize="20dp" />
-
-	<SeekBar
-	    android:id="@+id/songBar"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content"
-	    android:layout_alignBottom="@+id/album_back"
-	    android:layout_alignParentLeft="true" />
 	
 	<LinearLayout
 	    android:id="@+id/buttonLayout"
@@ -148,5 +119,32 @@
 	    android:layout_marginTop="10dp"
 	    android:text="Share"
 	    android:textColor="@color/text_default" />
+
+	<TextView
+	    android:id="@+id/playTime"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/album_back"
+	    android:layout_alignLeft="@+id/song_name"
+	    android:text="0:00"
+	    android:textAppearance="?android:attr/textAppearanceLarge"
+	    android:textColor="@color/text_default"
+	    android:textSize="20dp" />
+
+	<SeekBar
+	    android:id="@+id/songBar"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/album_back"
+	    android:layout_alignParentLeft="true" />
+
+	<Button
+	    android:id="@+id/loop_button"
+	    android:layout_width="40sp"
+	    android:layout_height="40sp"
+	    android:layout_alignBottom="@+id/song_name"
+	    android:layout_alignParentRight="true"
+	    android:layout_marginRight="25dp"
+	    android:background="@drawable/pause_button" />
  
 </RelativeLayout>
