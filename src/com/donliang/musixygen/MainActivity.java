@@ -248,16 +248,16 @@ public class MainActivity extends Activity {
         playTimeField = (TextView)findViewById(R.id.playTime);
         songBar = (SeekBar)findViewById(R.id.songBar);
         
-        Button loop = (Button)findViewById(R.id.loop_button);
+        Button loop = (Button)findViewById(R.id.repeat_button);
         loop.setOnClickListener(new View.OnClickListener() {       	
         	@Override
         	public void onClick(View v) {
         		if (!ButtonBoolean && mediaPlayer != null ) {
-	        		Toast.makeText(getBaseContext(), "looping is true", Toast.LENGTH_SHORT ).show();
+	        		Toast.makeText(getBaseContext(), "Single Repeated", Toast.LENGTH_SHORT ).show();
 	        		mediaPlayer.setLooping(true); 
 	        		ButtonBoolean = true; 
         		} else {
-            		Toast.makeText(getBaseContext(), "looping is false", Toast.LENGTH_SHORT ).show();
+            		Toast.makeText(getBaseContext(), "Unrepeated", Toast.LENGTH_SHORT ).show();
             		mediaPlayer.setLooping(false); 
             		ButtonBoolean = false; 
         		}     		

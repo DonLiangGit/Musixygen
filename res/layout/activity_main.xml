@@ -101,16 +101,6 @@
     </ListView>
 
 	<TextView
-	    android:id="@+id/textView1"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignLeft="@+id/playTime"
-	    android:layout_below="@+id/buttonLayout"
-	    android:layout_marginTop="10dp"
-	    android:text="Shuffle"
-	    android:textColor="@color/text_default" />
-
-	<TextView
 	    android:id="@+id/textView2"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
@@ -146,5 +136,13 @@
 	    android:layout_alignParentRight="true"
 	    android:layout_marginRight="25dp"
 	    android:background="@drawable/pause_button" />
+
+	<Button
+	    android:id="@+id/repeat_button"
+	    android:layout_width="30dp"
+	    android:layout_height="25dp"
+	    android:layout_alignLeft="@+id/artist_name"
+	    android:layout_alignTop="@+id/textView2"
+	    android:background="@drawable/repeat_button" />
  
 </RelativeLayout>

@@ -158,11 +158,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int list_item_bg=0x7f020002;
         public static final int pause_button=0x7f020003;
         public static final int play_button=0x7f020004;
-        public static final int round_button=0x7f020005;
-        public static final int round_button_over=0x7f020006;
+        public static final int repeat_button=0x7f020005;
+        public static final int round_button=0x7f020006;
+        public static final int round_button_over=0x7f020007;
     }
     public static final class id {
-        public static final int action_settings=0x7f06001d;
+        public static final int action_settings=0x7f06001e;
         public static final int album_back=0x7f060007;
         public static final int album_cover=0x7f06000c;
         public static final int album_front=0x7f060008;
@@ -174,23 +175,24 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int fullscreen=0x7f060003;
         public static final int left=0x7f060000;
         public static final int left_drawer=0x7f060013;
-        public static final int loop_button=0x7f060011;
+        public static final int loop_button=0x7f06000f;
         public static final int margin=0x7f060002;
         public static final int none=0x7f060004;
         public static final int pause_button=0x7f060018;
-        public static final int playTime=0x7f06000f;
+        public static final int playTime=0x7f060010;
         public static final int play_button=0x7f060016;
+        public static final int repeat_button=0x7f060012;
         public static final int rewind_button=0x7f060014;
         public static final int right=0x7f060001;
         public static final int selected_view=0x7f060005;
         public static final int slidingmenumain=0x7f06001a;
-        public static final int songBar=0x7f060012;
+        public static final int songBar=0x7f060011;
         public static final int song_name=0x7f060009;
         public static final int stop_button=0x7f060017;
         public static final int text1=0x7f06001b;
         public static final int text2=0x7f06001c;
-        public static final int textView1=0x7f06000e;
-        public static final int textView2=0x7f060010;
+        public static final int textView1=0x7f06001d;
+        public static final int textView2=0x7f06000e;
         public static final int txtItem=0x7f060019;
     }
     public static final class layout {
