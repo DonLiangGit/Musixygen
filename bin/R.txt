@@ -29,11 +29,12 @@ int dimen slidingmenu_offset 0x7f080002
 int drawable album_cover 0x7f020000
 int drawable ic_launcher 0x7f020001
 int drawable list_item_bg 0x7f020002
-int drawable pause_button 0x7f020003
-int drawable play_button 0x7f020004
-int drawable repeat_button 0x7f020005
-int drawable round_button 0x7f020006
-int drawable round_button_over 0x7f020007
+int drawable menu_icon 0x7f020003
+int drawable pause_button 0x7f020004
+int drawable play_button 0x7f020005
+int drawable repeat_button 0x7f020006
+int drawable round_button 0x7f020007
+int drawable round_button_over 0x7f020008
 int id action_settings 0x7f060020
 int id album_back 0x7f060007
 int id album_cover 0x7f06000b

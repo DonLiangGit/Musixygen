@@ -9,9 +9,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-//import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
-
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -90,12 +88,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
     	// Sliding Menu
-//        SlidingMenu menu = new SlidingMenu(this);
-//        menu.setMode(SlidingMenu.RIGHT);
-//        menu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
-//        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-//        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-//        menu.setMenu(R.layout.activity_menu);
+        SlidingMenu menu = new SlidingMenu(this);
+        menu.setMode(SlidingMenu.RIGHT);
+        menu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+        menu.setMenu(R.layout.activity_menu);
         UIInit();
         checkAvail();
 		
@@ -207,7 +205,6 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				}
 				updateStateButton();
-				updateSongInfo();
 			}
         	
         });
@@ -250,11 +247,6 @@ public class MainActivity extends Activity {
 //        }
 
     }
-
-    protected void updateSongInfo() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private void updateStateButton() {
 		// TODO Auto-generated method stub
