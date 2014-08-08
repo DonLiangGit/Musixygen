@@ -85,6 +85,8 @@ public class MainActivity extends Activity {
 	
 	// Play all in default
 	private HashMap<Integer, String> playMap = new HashMap<Integer, String>();
+	private int songNumber = 0;
+	private int currentSongIndex = -1;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -102,9 +104,16 @@ public class MainActivity extends Activity {
         checkAvail();
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {			
 			@Override
-			public void onCompletion(MediaPlayer mp) {
+			public void onCompletion(MediaPlayer mediaPlayer) {
 				// TODO Auto-generated method stub
-//				Toast.makeText(getApplicationContext(), "Lol", 2000).show();;
+//				Toast.makeText(getApplicationContext(), "Lol", 2000).show();
+				if (currentSongIndex < songNumber) {
+					playSong(currentSongIndex + 1);
+					currentSongIndex = currentSongIndex + 1;
+				} else {
+					playSong(0);
+					currentSongIndex = 0;
+				}
 			}
 		} );
 		
@@ -153,6 +162,7 @@ public class MainActivity extends Activity {
 					} else {
 						songMainMeta.setDataSource(Path+songsTest.get(position).getFilenmae());
 	        			// Retrieve the album art
+						currentSongIndex = position;
 	        			byte[] art = null;
 	        			if (songMainMeta.getEmbeddedPicture() != null) {
 	        				art = songMainMeta.getEmbeddedPicture();       				
@@ -333,6 +343,7 @@ public class MainActivity extends Activity {
         } else {
 //        	textview.setText("Yo!");
         	if (musicPathFile.listFiles(new mp3FileFilter()).length > 0) {
+        		songNumber = musicPathFile.listFiles(new mp3FileFilter()).length;
         		int songID = 1;
         		String songFilePath = null;
         		for (File file : musicPathFile.listFiles(new mp3FileFilter())) {
@@ -424,7 +435,18 @@ public class MainActivity extends Activity {
 	}
 		
 	public void  playSong(int songIndex) {
-		
+		try {
+			mediaPlayer.reset();
+			mediaPlayer.setDataSource(playMap.get(songIndex));
+			mediaPlayer.prepare();
+			mediaPlayer.start();
+		} catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 	}
 	
     @Override
