@@ -101,16 +101,6 @@
     </ListView>
 
 	<TextView
-	    android:id="@+id/textView2"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignRight="@+id/loop_button"
-	    android:layout_below="@+id/buttonLayout"
-	    android:layout_marginTop="10dp"
-	    android:text="Share"
-	    android:textColor="@color/text_default" />
-
-	<TextView
 	    android:id="@+id/playTime"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
@@ -129,20 +119,20 @@
 	    android:layout_alignParentLeft="true" />
 
 	<Button
-	    android:id="@+id/loop_button"
+	    android:id="@+id/state_button"
 	    android:layout_width="40sp"
 	    android:layout_height="40sp"
 	    android:layout_alignBottom="@+id/song_name"
 	    android:layout_alignParentRight="true"
-	    android:layout_marginRight="25dp"
-	    android:background="@drawable/pause_button" />
+	    android:layout_marginRight="25dp"/>
 
 	<Button
 	    android:id="@+id/repeat_button"
 	    android:layout_width="30dp"
 	    android:layout_height="25dp"
 	    android:layout_alignLeft="@+id/artist_name"
-	    android:layout_alignTop="@+id/textView2"
+	    android:layout_marginTop="15dp"
+	    android:layout_below="@+id/buttonLayout"
 	    android:background="@drawable/repeat_button" />
  
 </RelativeLayout>

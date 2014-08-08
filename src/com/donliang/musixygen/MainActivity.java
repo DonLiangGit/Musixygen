@@ -67,7 +67,7 @@ public class MainActivity extends Activity {
 	private MediaMetadataRetriever songMainMeta = new MediaMetadataRetriever();
 	private ImageView album_artFront = null;
 	private ImageView album_artBack = null;
-	private TextView song_name;
+	private Button state_btn = null;
 	
 	private Handler barHandler = new Handler();
 	
@@ -96,6 +96,7 @@ public class MainActivity extends Activity {
 //        menu.setMenu(R.layout.activity_menu);
         UIInit();
         checkAvail();
+        updateStateButton();
 
 		
 //		SlidingMenu_List = (ListView) findViewById(R.id.left_drawer);
@@ -110,7 +111,8 @@ public class MainActivity extends Activity {
 			View view2;
 			int select_item = -1;
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				v.setSelected(true);
+//				v.setSelected(true);
+				TextView tv = (TextView)findViewById(R.id.text1);
 				if((select_item == -1) || (select_item == position)){
 					v.setBackgroundColor(Color.parseColor("#A69cede4"));
 				} else {
@@ -191,9 +193,11 @@ public class MainActivity extends Activity {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				updateStateButton();
 			}
         	
         });
+
 //        String[] drawer_menu = this.getResources().getStringArray(R.array.album_item);
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.song_list_item, drawer_menu);
 //        albumList.setAdapter(adapter);
@@ -233,13 +237,24 @@ public class MainActivity extends Activity {
 
     }
 
-    private void UIInit() {
+    private void updateStateButton() {
+		// TODO Auto-generated method stub
+		if (mediaPlayer.isPlaying() == true) {
+			state_btn.setBackgroundResource(R.drawable.pause_button);
+		} else {
+			state_btn.setBackgroundResource(R.drawable.play_button);
+		}
+	}
+
+	private void UIInit() {
 		// TODO Auto-generated method stub
         
         album_artFront = (ImageView)findViewById(R.id.album_front);
         album_artBack = (ImageView)findViewById(R.id.album_back);
         
-        song_name = (TextView)findViewById(R.id.song_name);
+        state_btn = (Button)findViewById(R.id.state_button);
+        
+//        song_name = (TextView)findViewById(R.id.song_name);
 //        song_name.setText("GOTDAMN");
 //        song_name.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/ostrich.ttf"));
 //        currentState = (TextView)findViewById(R.id.currentState);
