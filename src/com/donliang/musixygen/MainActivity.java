@@ -20,6 +20,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
+import android.media.MediaPlayer.OnCompletionListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -96,6 +97,13 @@ public class MainActivity extends Activity {
         menu.setMenu(R.layout.activity_menu);
         UIInit();
         checkAvail();
+        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {			
+			@Override
+			public void onCompletion(MediaPlayer mp) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "Lol", 2000).show();;
+			}
+		} );
 		
 //		SlidingMenu_List = (ListView) findViewById(R.id.left_drawer);
 //		LayoutInflater SMinflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -405,6 +413,10 @@ public class MainActivity extends Activity {
 		map.put("singerName", s.getSinger());
 		map.put("songTitle", s.getTitle());
 		return map;
+	}
+		
+	public void  playSong(int songIndex) {
+		
 	}
 	
     @Override
