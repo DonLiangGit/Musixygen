@@ -83,6 +83,9 @@ public class MainActivity extends Activity {
 	
 	ArrayList<Song> songsTest;
 	
+	// Play all in default
+	private HashMap<Integer, String> playMap = new HashMap<Integer, String>();
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,7 +104,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onCompletion(MediaPlayer mp) {
 				// TODO Auto-generated method stub
-				Toast.makeText(getApplicationContext(), "Lol", 2000).show();;
+//				Toast.makeText(getApplicationContext(), "Lol", 2000).show();;
 			}
 		} );
 		
@@ -331,10 +334,12 @@ public class MainActivity extends Activity {
 //        	textview.setText("Yo!");
         	if (musicPathFile.listFiles(new mp3FileFilter()).length > 0) {
         		int songID = 1;
+        		String songFilePath = null;
         		for (File file : musicPathFile.listFiles(new mp3FileFilter())) {
 
         			// get MediaMetaData for each song
         			MediaMetadataRetriever songMetaData = new MediaMetadataRetriever();
+        			songFilePath = Path + file.getName();
         			songMetaData.setDataSource(Path + file.getName());
         			String artistName = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST);
 	    			if (artistName == null) {
@@ -361,8 +366,11 @@ public class MainActivity extends Activity {
         			
         			Song s = new Song();
         			
+        			// Set list item ID
         			String songListID = Integer.toString(songID) + ".";
         			
+        			playMap.put(songID, songFilePath);
+        			Log.d("testing", playMap.get(songID));
         			
         			s.setFilename(file.getName());
         			s.setSinger(singerName);
