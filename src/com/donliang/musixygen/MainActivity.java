@@ -68,6 +68,8 @@ public class MainActivity extends Activity {
 	private ImageView album_artFront = null;
 	private ImageView album_artBack = null;
 	private Button state_btn = null;
+	private TextView artist_name = null;
+	private TextView song_title= null;
 	
 	private Handler barHandler = new Handler();
 	
@@ -96,8 +98,6 @@ public class MainActivity extends Activity {
 //        menu.setMenu(R.layout.activity_menu);
         UIInit();
         checkAvail();
-        updateStateButton();
-
 		
 //		SlidingMenu_List = (ListView) findViewById(R.id.left_drawer);
 //		LayoutInflater SMinflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -165,6 +165,19 @@ public class MainActivity extends Activity {
 	        			} else {
 	        				album_artFront.setImageResource(R.drawable.album_cover);
 	        			}
+	        			
+	        			String singerName = songMainMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+	        			if (singerName == null || singerName.equals("")) {
+	        				singerName = "Unknown";
+	        			}
+	        			artist_name.setText(singerName);
+      			
+	        			// Retrieve the song title
+	        			String songTitle = songMainMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+	        			if (songTitle == null || songTitle.equals("")) {
+	        				songTitle = "Unknown";
+	        			}
+	        	    	song_title.setText(songTitle);
 						
 						positionTag = position;
 						
@@ -194,6 +207,7 @@ public class MainActivity extends Activity {
 					e.printStackTrace();
 				}
 				updateStateButton();
+				updateSongInfo();
 			}
         	
         });
@@ -237,7 +251,12 @@ public class MainActivity extends Activity {
 
     }
 
-    private void updateStateButton() {
+    protected void updateSongInfo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void updateStateButton() {
 		// TODO Auto-generated method stub
 		if (mediaPlayer.isPlaying() == true) {
 			state_btn.setBackgroundResource(R.drawable.pause_button);
@@ -252,6 +271,8 @@ public class MainActivity extends Activity {
         album_artFront = (ImageView)findViewById(R.id.album_front);
         album_artBack = (ImageView)findViewById(R.id.album_back);
         
+    	artist_name = (TextView)findViewById(R.id.artist_name);
+    	song_title= (TextView)findViewById(R.id.song_title);
         state_btn = (Button)findViewById(R.id.state_button);
         
 //        song_name = (TextView)findViewById(R.id.song_name);
