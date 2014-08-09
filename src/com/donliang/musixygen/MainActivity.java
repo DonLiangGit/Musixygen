@@ -296,8 +296,10 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (mediaPlayer.isPlaying() == true) {
-					mediaPlayer.stop();
+					mediaPlayer.pause();
+					resumeTag = mediaPlayer.getCurrentPosition();
 				} else {
+					mediaPlayer.seekTo(resumeTag);
 					mediaPlayer.start();
 				}
 				updateStateButton();
@@ -397,7 +399,6 @@ public class MainActivity extends Activity {
         			String songListID = Integer.toString(songID) + ".";
         			
         			playMap.put(songID, songFilePath);
-        			Log.d("testing", playMap.get(songID));
         			
         			s.setFilename(file.getName());
         			s.setSinger(singerName);
