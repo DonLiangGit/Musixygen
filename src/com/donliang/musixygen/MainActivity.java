@@ -300,6 +300,7 @@ public class MainActivity extends Activity {
 				} else {
 					mediaPlayer.start();
 				}
+				updateStateButton();
 			}
         	
         });
