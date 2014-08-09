@@ -108,6 +108,7 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated method stub
 //				Toast.makeText(getApplicationContext(), "Lol", 2000).show();
 				if (currentSongIndex < songNumber) {
+					Log.d("if condition",Integer.toString(currentSongIndex+1));
 					playSong(currentSongIndex + 1);
 					currentSongIndex = currentSongIndex + 1;
 				} else {
@@ -130,6 +131,9 @@ public class MainActivity extends Activity {
 			int select_item = -1;
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 //				v.setSelected(true);
+				currentSongIndex = position;
+				Log.d("currentSongInde", Integer.toString(currentSongIndex));
+				
 				TextView tv = (TextView)findViewById(R.id.text1);
 				if((select_item == -1) || (select_item == position)){
 					v.setBackgroundColor(Color.parseColor("#A69cede4"));
@@ -162,7 +166,6 @@ public class MainActivity extends Activity {
 					} else {
 						songMainMeta.setDataSource(Path+songsTest.get(position).getFilenmae());
 	        			// Retrieve the album art
-						currentSongIndex = position;
 	        			byte[] art = null;
 	        			if (songMainMeta.getEmbeddedPicture() != null) {
 	        				art = songMainMeta.getEmbeddedPicture();       				
@@ -344,7 +347,7 @@ public class MainActivity extends Activity {
 //        	textview.setText("Yo!");
         	if (musicPathFile.listFiles(new mp3FileFilter()).length > 0) {
         		songNumber = musicPathFile.listFiles(new mp3FileFilter()).length;
-        		int songID = 1;
+        		int songID = 0;
         		String songFilePath = null;
         		for (File file : musicPathFile.listFiles(new mp3FileFilter())) {
 
