@@ -107,7 +107,7 @@ public class MainActivity extends Activity {
 			public void onCompletion(MediaPlayer mediaPlayer) {
 				// TODO Auto-generated method stub
 //				Toast.makeText(getApplicationContext(), "Lol", 2000).show();
-				if (currentSongIndex < songNumber) {
+				if (currentSongIndex < songNumber - 1) {
 					Log.d("if condition",Integer.toString(currentSongIndex+1));
 					playSong(currentSongIndex + 1);
 					currentSongIndex = currentSongIndex + 1;
@@ -136,10 +136,10 @@ public class MainActivity extends Activity {
 				
 				TextView tv = (TextView)findViewById(R.id.text1);
 				if((select_item == -1) || (select_item == position)){
-					v.setBackgroundColor(Color.parseColor("#A69cede4"));
+					v.setBackgroundColor(Color.parseColor("#4D9cede4"));
 				} else {
 					view2.setBackground(null);
-					v.setBackgroundColor(Color.parseColor("#A69cede4"));
+					v.setBackgroundColor(Color.parseColor("#4D9cede4"));
 				}
 				view2 = v;
 				select_item=position;
@@ -399,6 +399,7 @@ public class MainActivity extends Activity {
         			String songListID = Integer.toString(songID) + ".";
         			
         			playMap.put(songID, songFilePath);
+        			Log.d(songListID, songFilePath);
         			
         			s.setFilename(file.getName());
         			s.setSinger(singerName);
@@ -451,7 +452,7 @@ public class MainActivity extends Activity {
 		return map;
 	}
 		
-	public void  playSong(int songIndex) {
+	public void playSong(int songIndex) {
 		try {
 			mediaPlayer.reset();
 			mediaPlayer.setDataSource(playMap.get(songIndex));
