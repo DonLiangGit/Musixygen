@@ -506,17 +506,17 @@ public class MainActivity extends Activity {
 	@Override
 	public void onBackPressed() {
 		// TODO Auto-generated method stub
-		super.onBackPressed();
+		if(mediaPlayer != null && mediaPlayer.isPlaying()) {
+			barHandler.removeCallbacks(updatedSongTime);
+			super.onBackPressed();
+		}
+		
 	}
 
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
-		if(mediaPlayer != null && mediaPlayer.isPlaying()) {
-			mediaPlayer.stop();
-			mediaPlayer.release();
-			mediaPlayer = null;
-		}
+
 		super.onDestroy();
 	}
     
