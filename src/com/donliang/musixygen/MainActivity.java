@@ -132,7 +132,7 @@ public class MainActivity extends Activity {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 //				v.setSelected(true);
 				currentSongIndex = position;
-				Log.d("currentSongInde", Integer.toString(currentSongIndex));
+//				Log.d("currentSongInde", Integer.toString(currentSongIndex));
 				
 				TextView tv = (TextView)findViewById(R.id.text1);
 				if((select_item == -1) || (select_item == position)){
@@ -291,6 +291,18 @@ public class MainActivity extends Activity {
     	song_title= (TextView)findViewById(R.id.song_title);
         state_btn = (Button)findViewById(R.id.state_button);
         
+        state_btn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (mediaPlayer.isPlaying() == true) {
+					mediaPlayer.stop();
+				} else {
+					mediaPlayer.start();
+				}
+			}
+        	
+        });
 //        song_name = (TextView)findViewById(R.id.song_name);
 //        song_name.setText("GOTDAMN");
 //        song_name.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/ostrich.ttf"));
