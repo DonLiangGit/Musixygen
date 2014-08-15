@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -54,11 +55,10 @@ public class MainActivity extends Activity {
 	private int rewindTime = 10000;
 	private TextView playTimeField;
 	
-//	private TextView currentState;
-//	public static final String currentPlay = "Currently playing";
-//	public static final String currentPause = "Currently pause";
-			
-	private boolean ButtonBoolean = false;
+	// Play mode control
+	private boolean LoopBoolean = false;
+	private boolean ShuffleBoolean =false;
+	private Random randomSong;
 	
 	private int positionTag = 0;
 	private int resumeTag = 0;
@@ -105,8 +105,6 @@ public class MainActivity extends Activity {
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {			
 			@Override
 			public void onCompletion(MediaPlayer mediaPlayer) {
-				// TODO Auto-generated method stub
-//				Toast.makeText(getApplicationContext(), "Lol", 2000).show();
 				if (currentSongIndex < songNumber - 1) {
 					Log.d("if condition",Integer.toString(currentSongIndex+1));
 					playSong(currentSongIndex + 1);
@@ -143,8 +141,7 @@ public class MainActivity extends Activity {
 				}
 				view2 = v;
 				select_item=position;
-				// TODO Auto-generated method stub
-				// TODO Auto-generated method stub
+
 				Log.d("position", Path+songsTest.get(position).getFilenmae());
 				try {
 					v.setSelected(true);
@@ -212,16 +209,12 @@ public class MainActivity extends Activity {
 					}
 	        		
 				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				updateStateButton();
@@ -269,7 +262,6 @@ public class MainActivity extends Activity {
     }
 
 	private void updateStateButton() {
-		// TODO Auto-generated method stub
 		if (mediaPlayer.isPlaying() == true) {
 			state_btn.setBackgroundResource(R.drawable.pause_button);
 		} else {
@@ -316,17 +308,32 @@ public class MainActivity extends Activity {
         loop.setOnClickListener(new View.OnClickListener() {       	
         	@Override
         	public void onClick(View v) {
-        		if (!ButtonBoolean && mediaPlayer != null ) {
+        		if (!LoopBoolean && mediaPlayer != null ) {
 	        		Toast.makeText(getBaseContext(), "Single Repeated", Toast.LENGTH_SHORT ).show();
 	        		mediaPlayer.setLooping(true); 
-	        		ButtonBoolean = true; 
+	        		LoopBoolean = true; 
         		} else {
-            		Toast.makeText(getBaseContext(), "Unrepeated", Toast.LENGTH_SHORT ).show();
+            		Toast.makeText(getBaseContext(), "UnRepeated", Toast.LENGTH_SHORT ).show();
             		mediaPlayer.setLooping(false); 
-            		ButtonBoolean = false; 
+            		LoopBoolean = false; 
         		}     		
         	}
         });
+        
+        Button shuffle = (Button)findViewById(R.id.shuffle_button);
+        shuffle.setOnClickListener(new View.OnClickListener() {			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				if (!ShuffleBoolean && mediaPlayer != null ) {
+					Toast.makeText(getBaseContext(), "Shuffle", Toast.LENGTH_SHORT ).show();
+					ShuffleBoolean = true;
+				} else {
+					Toast.makeText(getBaseContext(), "Nah", Toast.LENGTH_SHORT ).show();
+					ShuffleBoolean = false;
+				}
+			}
+		});
 	}
 
 	private void checkAvail() {
@@ -348,14 +355,13 @@ public class MainActivity extends Activity {
         // Full path return exact directory name in SDCard.
         musicPathFile = new File(SDCard_Path.getParent() + "/" + SDCard_Path.getName() + "/Musixygen/");
         if (musicPathFile.exists()) {
-        	final String path = musicPathFile.getPath();
-//        	Log.d("get", path);
+        	// Do nothing if exists or not.
         }
         if (musicPathFile.listFiles() == null) {
 //        	textview.setText("Cannot find files!");
-        	Log.d("get song","null");
+        	Log.d("No song","null");
         } else {
-//        	textview.setText("Yo!");
+        	
         	if (musicPathFile.listFiles(new mp3FileFilter()).length > 0) {
         		songNumber = musicPathFile.listFiles(new mp3FileFilter()).length;
         		int songID = 0;
