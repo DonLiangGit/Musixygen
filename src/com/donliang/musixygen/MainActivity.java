@@ -105,7 +105,11 @@ public class MainActivity extends Activity {
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {			
 			@Override
 			public void onCompletion(MediaPlayer mediaPlayer) {
-				if (currentSongIndex < songNumber - 1) {
+				if (LoopBoolean) {
+					playSong(currentSongIndex);
+				} else if (ShuffleBoolean) {
+					
+				} else if (currentSongIndex < songNumber - 1) {
 					Log.d("if condition",Integer.toString(currentSongIndex+1));
 					playSong(currentSongIndex + 1);
 					currentSongIndex = currentSongIndex + 1;
@@ -310,7 +314,6 @@ public class MainActivity extends Activity {
         	public void onClick(View v) {
         		if (!LoopBoolean && mediaPlayer != null ) {
 	        		Toast.makeText(getBaseContext(), "Single Repeated", Toast.LENGTH_SHORT ).show();
-	        		mediaPlayer.setLooping(true); 
 	        		LoopBoolean = true; 
         		} else {
             		Toast.makeText(getBaseContext(), "UnRepeated", Toast.LENGTH_SHORT ).show();
@@ -518,7 +521,6 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
-
 		super.onDestroy();
 	}
     
