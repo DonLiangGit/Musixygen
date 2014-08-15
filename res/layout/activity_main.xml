@@ -26,8 +26,7 @@
 		android:layout_alignRight="@id/album_back"
 		android:layout_alignTop="@id/album_back"
 		android:fitsSystemWindows="true"
-		android:scaleType="centerCrop"
-		android:src="@drawable/cover" />
+		android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/song_title"
