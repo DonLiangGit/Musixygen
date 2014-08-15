@@ -149,20 +149,22 @@ public class MainActivity extends Activity {
 				try {
 					v.setSelected(true);
 					
+					// when the song is playing, pause it and save the position
 					if (positionTag == position && mediaPlayer.isPlaying() == true) {
 						mediaPlayer.pause();
 						resumeTag = mediaPlayer.getCurrentPosition();
 						Log.d("pause","pause");
-					} else if (positionTag == position && mediaPlayer.isPlaying() == false) {
-						if (resumeTag == 0) {
-							mediaPlayer.setDataSource(Path+songsTest.get(position).getFilenmae());
-							mediaPlayer.prepare();
-							mediaPlayer.start();
-						} else {
+					// when the song is not playing, optionally start a new song or resume
+					} else if (positionTag == position && mediaPlayer.isPlaying() == false && resumeTag != 0) {
+//						if (resumeTag == 0) {
+//							mediaPlayer.setDataSource(Path+songsTest.get(position).getFilenmae());
+//							mediaPlayer.prepare();
+//							mediaPlayer.start();
+//						} else {
 							mediaPlayer.seekTo(resumeTag);
 							mediaPlayer.start();
 							Log.d("resume","resume");
-						}
+//						}
 					} else {
 						songMainMeta.setDataSource(Path+songsTest.get(position).getFilenmae());
 	        			// Retrieve the album art
