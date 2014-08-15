@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
 	// Play mode control
 	private boolean LoopBoolean = false;
 	private boolean ShuffleBoolean =false;
-	private Random randomSong;
+	private int randomSong;
 	
 	private int positionTag = 0;
 	private int resumeTag = 0;
@@ -108,7 +108,7 @@ public class MainActivity extends Activity {
 				if (LoopBoolean) {
 					playSong(currentSongIndex);
 				} else if (ShuffleBoolean) {
-					
+					playSong(randomSong);
 				} else if (currentSongIndex < songNumber - 1) {
 					Log.d("if condition",Integer.toString(currentSongIndex+1));
 					playSong(currentSongIndex + 1);
@@ -330,6 +330,7 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated method stub
 				if (!ShuffleBoolean && mediaPlayer != null ) {
 					Toast.makeText(getBaseContext(), "Shuffle", Toast.LENGTH_SHORT ).show();
+					randomSong = new Random().nextInt(songNumber);
 					ShuffleBoolean = true;
 				} else {
 					Toast.makeText(getBaseContext(), "Nah", Toast.LENGTH_SHORT ).show();
