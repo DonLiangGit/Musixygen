@@ -105,9 +105,9 @@ public class MainActivity extends Activity {
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {			
 			@Override
 			public void onCompletion(MediaPlayer mediaPlayer) {
-				if (LoopBoolean) {
+				if (LoopBoolean == true) {
 					playSong(currentSongIndex);
-				} else if (ShuffleBoolean) {
+				} else if (ShuffleBoolean == true) {
 					playSong(randomSong);
 				} else if (currentSongIndex < songNumber - 1) {
 					Log.d("if condition",Integer.toString(currentSongIndex+1));
@@ -271,6 +271,45 @@ public class MainActivity extends Activity {
 		} else {
 			state_btn.setBackgroundResource(R.drawable.play_button);
 		}
+	}
+	
+	private void updateUI(String path) {
+		songMainMeta.setDataSource(path);
+		// Retrieve the album art
+		byte[] art = null;
+		if (songMainMeta.getEmbeddedPicture() != null) {
+			art = songMainMeta.getEmbeddedPicture();       				
+			final Bitmap songImage = BitmapFactory.decodeByteArray(art, 0, art.length);
+			album_artFront.setImageBitmap(songImage);
+			
+			final Animation albumAnimation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+			album_artFront.startAnimation(albumAnimation);
+			
+			// Imageview Animation Overlay
+			Handler handler = new Handler();
+			handler.postDelayed(new Runnable() {
+			    @Override
+			    public void run() {
+			        album_artBack.setImageBitmap(songImage);
+			    }
+			}, 1000);
+			
+		} else {
+			album_artFront.setImageResource(R.drawable.cover);
+		}
+		
+		String singerName = songMainMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
+		if (singerName == null || singerName.equals("")) {
+			singerName = "Unknown";
+		}
+		artist_name.setText(singerName);
+	
+		// Retrieve the song title
+		String songTitle = songMainMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE);
+		if (songTitle == null || songTitle.equals("")) {
+			songTitle = "Unknown";
+		}
+    	song_title.setText(songTitle);		
 	}
 
 	private void UIInit() {
@@ -460,8 +499,12 @@ public class MainActivity extends Activity {
 		
 	public void playSong(int songIndex) {
 		try {
+			String pathChange = playMap.get(songIndex);
 			mediaPlayer.reset();
-			mediaPlayer.setDataSource(playMap.get(songIndex));
+			mediaPlayer.setDataSource(pathChange);
+			
+			updateUI(pathChange);
+			
 			mediaPlayer.prepare();
 			mediaPlayer.start();
 		} catch (IllegalArgumentException e) {
