@@ -153,50 +153,51 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int slidingmenu_offset=0x7f080002;
     }
     public static final class drawable {
-        public static final int album_cover=0x7f020000;
+        public static final int cover=0x7f020000;
         public static final int ic_launcher=0x7f020001;
         public static final int list_item_bg=0x7f020002;
         public static final int menu_icon=0x7f020003;
-        public static final int pause_button=0x7f020004;
-        public static final int play_button=0x7f020005;
-        public static final int repeat_button=0x7f020006;
-        public static final int round_button=0x7f020007;
-        public static final int round_button_over=0x7f020008;
+        public static final int musixygen=0x7f020004;
+        public static final int pause_button=0x7f020005;
+        public static final int play_button=0x7f020006;
+        public static final int repeat_button=0x7f020007;
+        public static final int round_button=0x7f020008;
+        public static final int round_button_over=0x7f020009;
     }
     public static final class id {
         public static final int action_settings=0x7f060020;
         public static final int album_back=0x7f060007;
-        public static final int album_cover=0x7f06000b;
+        public static final int album_cover=0x7f06001b;
         public static final int album_front=0x7f060008;
-        public static final int album_list=0x7f06000c;
-        public static final int artist_name=0x7f06000f;
+        public static final int album_list=0x7f06000b;
+        public static final int artist_name=0x7f06000d;
         public static final int buttonLayout=0x7f06000a;
         public static final int container=0x7f060006;
-        public static final int forward_button=0x7f060014;
+        public static final int forward_button=0x7f060013;
         public static final int fullscreen=0x7f060003;
         public static final int left=0x7f060000;
-        public static final int left_drawer=0x7f060012;
+        public static final int left_drawer=0x7f060011;
         public static final int loop_button=0x7f06001d;
         public static final int margin=0x7f060002;
         public static final int none=0x7f060004;
-        public static final int pause_button=0x7f060017;
-        public static final int playTime=0x7f060011;
-        public static final int play_button=0x7f060015;
-        public static final int repeat_button=0x7f06000e;
-        public static final int rewind_button=0x7f060013;
+        public static final int pause_button=0x7f060016;
+        public static final int playTime=0x7f06000f;
+        public static final int play_button=0x7f060014;
+        public static final int repeat_button=0x7f060010;
+        public static final int rewind_button=0x7f060012;
         public static final int right=0x7f060001;
         public static final int selected_view=0x7f060005;
-        public static final int slidingmenumain=0x7f060019;
-        public static final int songBar=0x7f06000d;
+        public static final int slidingmenumain=0x7f060018;
+        public static final int songBar=0x7f06000c;
         public static final int song_name=0x7f06001c;
         public static final int song_title=0x7f060009;
-        public static final int state_button=0x7f060010;
-        public static final int stop_button=0x7f060016;
-        public static final int text1=0x7f06001a;
-        public static final int text2=0x7f06001b;
+        public static final int state_button=0x7f06000e;
+        public static final int stop_button=0x7f060015;
+        public static final int text1=0x7f060019;
+        public static final int text2=0x7f06001a;
         public static final int textView1=0x7f06001e;
         public static final int textView2=0x7f06001f;
-        public static final int txtItem=0x7f060018;
+        public static final int txtItem=0x7f060017;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

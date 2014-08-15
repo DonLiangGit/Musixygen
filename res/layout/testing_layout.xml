@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:fitsSystemWindows="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/album_cover" />
+        android:src="@drawable/cover" />
 
     <TextView
         android:id="@+id/song_name"

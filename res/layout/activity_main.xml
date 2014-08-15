@@ -15,7 +15,7 @@
         android:layout_alignParentTop="true"
         android:fitsSystemWindows="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/album_cover" />
+        android:src="@drawable/cover" />
     
     <ImageView
         android:id="@+id/album_front"
@@ -27,7 +27,7 @@
 		android:layout_alignTop="@id/album_back"
 		android:fitsSystemWindows="true"
 		android:scaleType="centerCrop"
-		android:src="@drawable/album_cover" />
+		android:src="@drawable/cover" />
 
     <TextView
         android:id="@+id/song_title"
@@ -37,7 +37,7 @@
         android:layout_alignParentLeft="true"
         android:layout_marginBottom="56dp"
         android:layout_marginLeft="23dp"
-        android:text="Video Games"
+        android:text=""
         android:textColor="@color/text_default"
         android:textSize="30sp" />
 	
@@ -46,7 +46,7 @@
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
 	    android:layout_alignParentLeft="true"
-	    android:layout_below="@+id/album_cover"
+	    android:layout_below="@+id/album_back"
 	    android:orientation="horizontal" >
 	    
 <!-- 		<Button
@@ -96,15 +96,6 @@
 	    android:layout_height="wrap_content"
 	    android:layout_alignBottom="@+id/album_back"
 	    android:layout_alignParentLeft="true" />
-
-	<Button
-	    android:id="@+id/repeat_button"
-	    android:layout_width="30dp"
-	    android:layout_height="25dp"
-	    android:layout_alignLeft="@+id/artist_name"
-	    android:layout_marginTop="15dp"
-	    android:layout_below="@+id/buttonLayout"
-	    android:background="@drawable/repeat_button" />
 		
 	<TextView
 	    android:id="@+id/artist_name"
@@ -112,7 +103,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_above="@+id/song_title"
 	    android:layout_alignLeft="@+id/song_title"
-	    android:text="LANA DEL REY"
+	    android:text=""
 	    android:textAppearance="?android:attr/textAppearanceLarge"
 	    android:textColor="@color/text_default"
 	    android:textSize="20dp" />
@@ -146,5 +137,14 @@
 	    android:layout_marginRight="11dp"
 	    android:layout_marginTop="15dp"
 	    android:background="@drawable/menu_icon" /> -->
+
+	<Button
+	    android:id="@+id/repeat_button"
+	    android:layout_width="30dp"
+	    android:layout_height="25dp"
+	    android:layout_alignLeft="@+id/artist_name"
+	    android:layout_alignParentTop="true"
+	    android:layout_marginTop="16dp"
+	    android:background="@drawable/repeat_button" />
  
 </RelativeLayout>

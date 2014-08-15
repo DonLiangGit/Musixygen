@@ -94,12 +94,12 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
     	// Sliding Menu
-        SlidingMenu menu = new SlidingMenu(this);
-        menu.setMode(SlidingMenu.RIGHT);
-        menu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-        menu.setMenu(R.layout.activity_menu);
+//        SlidingMenu menu = new SlidingMenu(this);
+//        menu.setMode(SlidingMenu.RIGHT);
+//        menu.setTouchModeBehind(SlidingMenu.TOUCHMODE_FULLSCREEN);
+//        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+//        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
+//        menu.setMenu(R.layout.activity_menu);
         UIInit();
         checkAvail();
         mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {			
@@ -185,7 +185,7 @@ public class MainActivity extends Activity {
 	        				}, 1000);
 	        				
 	        			} else {
-	        				album_artFront.setImageResource(R.drawable.album_cover);
+	        				album_artFront.setImageResource(R.drawable.cover);
 	        			}
 	        			
 	        			String singerName = songMainMeta.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST);
@@ -396,7 +396,7 @@ public class MainActivity extends Activity {
         			Song s = new Song();
         			
         			// Set list item ID
-        			String songListID = Integer.toString(songID) + ".";
+        			String songListID = Integer.toString(songID+1) + ".";
         			
         			playMap.put(songID, songFilePath);
         			Log.d(songListID, songFilePath);
