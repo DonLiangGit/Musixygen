@@ -44,7 +44,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements OnCompletionListener {
 
 	private MediaPlayer mediaPlayer = new MediaPlayer();
 	private SeekBar songBar;
@@ -102,23 +102,7 @@ public class MainActivity extends Activity {
 //        menu.setMenu(R.layout.activity_menu);
         UIInit();
         checkAvail();
-        mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {			
-			@Override
-			public void onCompletion(MediaPlayer mediaPlayer) {
-				if (LoopBoolean == true) {
-					playSong(currentSongIndex);
-				} else if (ShuffleBoolean == true) {
-					playSong(randomSong);
-				} else if (currentSongIndex < songNumber - 1) {
-					Log.d("if condition",Integer.toString(currentSongIndex+1));
-					playSong(currentSongIndex + 1);
-					currentSongIndex = currentSongIndex + 1;
-				} else {
-					playSong(0);
-					currentSongIndex = 0;
-				}
-			}
-		} );
+        mediaPlayer.setOnCompletionListener(this);
 		
 //		SlidingMenu_List = (ListView) findViewById(R.id.left_drawer);
 //		LayoutInflater SMinflater = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -322,6 +306,7 @@ public class MainActivity extends Activity {
     	song_title= (TextView)findViewById(R.id.song_title);
         state_btn = (Button)findViewById(R.id.state_button);
         
+        
         state_btn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -337,10 +322,6 @@ public class MainActivity extends Activity {
 			}
         	
         });
-//        song_name = (TextView)findViewById(R.id.song_name);
-//        song_name.setText("GOTDAMN");
-//        song_name.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/ostrich.ttf"));
-//        currentState = (TextView)findViewById(R.id.currentState);
         
         lv = (ListView)findViewById(R.id.album_list);
         
@@ -409,12 +390,14 @@ public class MainActivity extends Activity {
         		songNumber = musicPathFile.listFiles(new mp3FileFilter()).length;
         		int songID = 0;
         		String songFilePath = null;
+        		
         		for (File file : musicPathFile.listFiles(new mp3FileFilter())) {
 
         			// get MediaMetaData for each song
         			MediaMetadataRetriever songMetaData = new MediaMetadataRetriever();
         			songFilePath = Path + file.getName();
         			songMetaData.setDataSource(Path + file.getName());
+        				
         			String artistName = songMetaData.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUMARTIST);
 	    			if (artistName == null) {
 	    				artistName = "Unknown";
@@ -515,26 +498,6 @@ public class MainActivity extends Activity {
             e.printStackTrace();
         }
 	}
-	
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     /**
      * A placeholder fragment containing a simple view.
@@ -571,6 +534,26 @@ public class MainActivity extends Activity {
 	class mp3FileFilter implements FilenameFilter {
 		public boolean accept(File dir, String name) {
 			return (name.endsWith(".mp3") || name.endsWith(".MP3"));
+		}
+	}
+	
+
+	@Override
+	public void onCompletion(MediaPlayer mp) {
+		// TODO Auto-generated method stub
+		if (LoopBoolean == true) {
+			playSong(currentSongIndex);
+		} else if (ShuffleBoolean == true) {
+			playSong(randomSong);
+		} else if (currentSongIndex < songNumber - 1) {
+			Log.d("if condition",Integer.toString(currentSongIndex+1));
+			playSong(currentSongIndex + 1);
+			currentSongIndex = currentSongIndex + 1;
+			lv.smoothScrollToPosition(currentSongIndex);
+		} else {
+			playSong(0);
+			currentSongIndex = 0;
+			lv.smoothScrollToPosition(currentSongIndex);
 		}
 	}
 
