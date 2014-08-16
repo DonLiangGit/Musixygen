@@ -5,7 +5,6 @@ Musixygen
 * MainActivity Polished... (Seekbar not customized yet)
 * ~~Integration slidingmenu and .mp3 listview~~
 * Searching and social network integradtion
-* 
 
 #### Features:
 * 3 playing modes: Single repeat, Shuffle and Play in order(Default)
@@ -28,7 +27,7 @@ Known Issues:
 - ~~Flexible Album info()~~ To retrieve more properties from an mp3 [Google API](http://developer.android.com/reference/android/media/MediaMetadataRetriever.html)
 - Overlay Progressbar
 - Auto searching related song put into a list(parser)
-- ~~Play songs in single repeat, repeat all, order, shuffle ~~ [Google API](http://developer.android.com/reference/android/media/MediaPlayer.html#setOnCompletionListener(android.media.MediaPlayer.OnCompletionListener))
+- ~~Play songs in single repeat, repeat all, order, shuffle~~ [Google API](http://developer.android.com/reference/android/media/MediaPlayer.html#setOnCompletionListener(android.media.MediaPlayer.OnCompletionListener))
 - Issues during the developement process will be stated in detail in sidebar `issues`
 
 
