@@ -118,9 +118,7 @@ public class MainActivity extends Activity implements OnCompletionListener {
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 //				v.setSelected(true);
 				currentSongIndex = position;
-//				Log.d("currentSongInde", Integer.toString(currentSongIndex));
 				
-				TextView tv = (TextView)findViewById(R.id.text1);
 				if((select_item == -1) || (select_item == position)){
 					v.setBackgroundColor(Color.parseColor("#4D9cede4"));
 				} else {
@@ -541,6 +539,8 @@ public class MainActivity extends Activity implements OnCompletionListener {
 	@Override
 	public void onCompletion(MediaPlayer mp) {
 		// TODO Auto-generated method stub
+		View highLightedItem = null;
+		
 		if (LoopBoolean == true) {
 			playSong(currentSongIndex);
 		} else if (ShuffleBoolean == true) {
@@ -549,7 +549,11 @@ public class MainActivity extends Activity implements OnCompletionListener {
 			Log.d("if condition",Integer.toString(currentSongIndex+1));
 			playSong(currentSongIndex + 1);
 			currentSongIndex = currentSongIndex + 1;
+			// Scroll Effect UI
 			lv.smoothScrollToPosition(currentSongIndex);
+			
+			highLightedItem = lv.getChildAt(currentSongIndex);
+			highLightedItem.setBackgroundColor(Color.parseColor("#4D9cede4"));
 		} else {
 			playSong(0);
 			currentSongIndex = 0;
