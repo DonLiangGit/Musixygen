@@ -60,7 +60,7 @@ public class MainActivity extends Activity implements OnCompletionListener {
 	private boolean ShuffleBoolean =false;
 	private int randomSong;
 	
-	private int positionTag = 0;
+	private int positionTag = -1;
 	private int resumeTag = 0;
 	
 	private MediaMetadataRetriever songMainMeta = new MediaMetadataRetriever();
@@ -88,6 +88,11 @@ public class MainActivity extends Activity implements OnCompletionListener {
 	private int songNumber = 0;
 	private int currentSongIndex = -1;
 	
+	// Listview flag
+	private int HLFlag = -1;
+	private View LastView = null;
+	private View CurrentView = null;
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,20 +118,28 @@ public class MainActivity extends Activity implements OnCompletionListener {
 //        albumList = (ListView)findViewById(R.id.album_list);
         
 		lv.setOnItemClickListener( new OnItemClickListener() {
-			View view2;
-			int select_item = -1;
+			
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-//				v.setSelected(true);
+
 				currentSongIndex = position;
+				Log.d("position", Integer.toString(position));
 				
-				if((select_item == -1) || (select_item == position)){
+				// HighLighted List Item
+				if( LastView == null ) {
+					// User never click a item before and this is hte first one
+					LastView = v;
+					LastView.setBackgroundColor(Color.parseColor("#4D9cede4"));
+					Log.d("if 1","LastView null");
+				} else if (LastView != null && LastView == v) {
+					// do nothing because clicking the same list item
+					Log.d("if 2","LastView != null && LastView == v");
+				} else if (LastView != v) {
+					// User clicks a new list item					
+					LastView.setBackground(null);
+					LastView = v;
 					v.setBackgroundColor(Color.parseColor("#4D9cede4"));
-				} else {
-					view2.setBackground(null);
-					v.setBackgroundColor(Color.parseColor("#4D9cede4"));
+					Log.d("if 3","LastView != v");
 				}
-				view2 = v;
-				select_item=position;
 
 				Log.d("position", Path+songsTest.get(position).getFilenmae());
 				try {
@@ -539,7 +552,7 @@ public class MainActivity extends Activity implements OnCompletionListener {
 	@Override
 	public void onCompletion(MediaPlayer mp) {
 		// TODO Auto-generated method stub
-		View highLightedItem = null;
+//		View highLightedItem = null;
 		
 		if (LoopBoolean == true) {
 			playSong(currentSongIndex);
@@ -547,15 +560,21 @@ public class MainActivity extends Activity implements OnCompletionListener {
 			playSong(randomSong);
 		} else if (currentSongIndex < songNumber - 1) {
 			Log.d("if condition",Integer.toString(currentSongIndex+1));
+			// Clean the current highlighted
+//			HLFlagClear.setBackground(null);
+			
 			playSong(currentSongIndex + 1);
+			
 			currentSongIndex = currentSongIndex + 1;
+//			HLFlag = currentSongIndex; // this is whatsup
 			// Scroll Effect UI
 			lv.smoothScrollToPosition(currentSongIndex);
 			
-			highLightedItem = lv.getChildAt(currentSongIndex);
-			highLightedItem.setBackgroundColor(Color.parseColor("#4D9cede4"));
+//			highLightedItem = lv.getChildAt(currentSongIndex);
+//			highLightedItem.setBackgroundColor(Color.parseColor("#4D9cede4"));
+			
 		} else {
-			playSong(0);
+			playSong(0);			
 			currentSongIndex = 0;
 			lv.smoothScrollToPosition(currentSongIndex);
 		}
