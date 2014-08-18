@@ -2,7 +2,7 @@ Musixygen
 =========
 
 #### App developement stages:
-* MainActivity Polished... (Seekbar not customized yet)
+* MainActivity Polished
 * ~~Integration slidingmenu and .mp3 listview~~
 * Searching and social network integradtion
 
@@ -10,7 +10,8 @@ Musixygen
 * 3 playing modes: Single repeat, Shuffle and Play in order(Default)
 * Multi-threading reduces load of UI thread.
 * musiXmatch-like item menu.
-* right slidingMenu
+* Right slidingMenu
+* Customized UI
 * Using [Tagr for Mac](http://www.macupdate.com/app/mac/30610/tagr) to set your mp3s' properties.
 * ~~iOS like transparent statusbar and navigation bar~~.
 * ~~Choosing MediaPlayer instead of Soundpool or AudioTrack.~~ [Difference in details](http://www.wiseandroid.com/post/2010/07/13/Intro-to-the-three-Android-Audio-APIs.aspx)
