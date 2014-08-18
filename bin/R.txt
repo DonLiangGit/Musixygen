@@ -38,8 +38,13 @@ int drawable repeat_button_pressed 0x7f020008
 int drawable repeat_one_button_pressed 0x7f020009
 int drawable round_button 0x7f02000a
 int drawable round_button_over 0x7f02000b
-int drawable shuffle_button 0x7f02000c
-int drawable shuffle_button_pressed 0x7f02000d
+int drawable secondary_seekbar 0x7f02000c
+int drawable seekbar 0x7f02000d
+int drawable shuffle_button 0x7f02000e
+int drawable shuffle_button_pressed 0x7f02000f
+int drawable styled_seekbar 0x7f020010
+int drawable thumbler 0x7f020011
+int id SecondaryProgress 0x01010000
 int id action_settings 0x7f060021
 int id album_back 0x7f060007
 int id album_cover 0x7f06001c

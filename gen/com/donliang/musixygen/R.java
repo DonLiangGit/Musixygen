@@ -165,10 +165,15 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int repeat_one_button_pressed=0x7f020009;
         public static final int round_button=0x7f02000a;
         public static final int round_button_over=0x7f02000b;
-        public static final int shuffle_button=0x7f02000c;
-        public static final int shuffle_button_pressed=0x7f02000d;
+        public static final int secondary_seekbar=0x7f02000c;
+        public static final int seekbar=0x7f02000d;
+        public static final int shuffle_button=0x7f02000e;
+        public static final int shuffle_button_pressed=0x7f02000f;
+        public static final int styled_seekbar=0x7f020010;
+        public static final int thumbler=0x7f020011;
     }
     public static final class id {
+        public static final int SecondaryProgress=0x01010000;
         public static final int action_settings=0x7f060021;
         public static final int album_back=0x7f060007;
         public static final int album_cover=0x7f06001c;

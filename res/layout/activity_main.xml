@@ -94,7 +94,11 @@
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content"
 	    android:layout_alignBottom="@+id/album_back"
-	    android:layout_alignParentLeft="true" />
+	    android:layout_alignParentLeft="true"
+	    android:paddingLeft="0px"
+	    android:paddingRight="0px"
+	    android:progressDrawable="@drawable/styled_seekbar"
+	    android:thumb="@drawable/thumbler"/>
 		
 	<TextView
 	    android:id="@+id/artist_name"

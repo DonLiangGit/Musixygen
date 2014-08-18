@@ -353,8 +353,7 @@ public class MainActivity extends Activity implements OnCompletionListener {
             		LoopBoolean = 2; 
         		} else {
         			loop.setBackgroundResource(R.drawable.repeat_button);
-        			LoopBoolean = -1;
-        			
+        			LoopBoolean = -1;        			
         		}  		
         	}
         });
@@ -555,7 +554,6 @@ public class MainActivity extends Activity implements OnCompletionListener {
 		}
 	}
 	
-
 	@Override
 	public void onCompletion(MediaPlayer mp) {
 		// TODO Auto-generated method stub
@@ -563,13 +561,16 @@ public class MainActivity extends Activity implements OnCompletionListener {
 			playSong(currentSongIndex);
 		} else if (ShuffleBoolean == true) {
 			playSong(randomSong);
-		} else if ((currentSongIndex < songNumber - 1) && LoopBoolean == -1) {
+		} else if (currentSongIndex < songNumber - 1) {
 			Log.d("if condition",Integer.toString(currentSongIndex+1));
 			// Clean the current highlighted
-			LastView.setBackground(null);
+			LastView.setBackgroundColor(Color.TRANSPARENT);
 			playSong(currentSongIndex + 1);			
 			currentSongIndex = currentSongIndex + 1;
 			LastView = lv.getChildAt(currentSongIndex);
+			if (LastView == null) {
+				Log.d("LastView","is null");
+			}
 			LastView.setBackgroundColor(Color.parseColor("#4D9cede4"));
 			// Scroll Effect UI
 			lv.smoothScrollToPosition(currentSongIndex);
