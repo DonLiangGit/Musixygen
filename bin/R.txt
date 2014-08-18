@@ -34,9 +34,12 @@ int drawable musixygen 0x7f020004
 int drawable pause_button 0x7f020005
 int drawable play_button 0x7f020006
 int drawable repeat_button 0x7f020007
-int drawable round_button 0x7f020008
-int drawable round_button_over 0x7f020009
-int drawable shuffle_button 0x7f02000a
+int drawable repeat_button_pressed 0x7f020008
+int drawable repeat_one_button_pressed 0x7f020009
+int drawable round_button 0x7f02000a
+int drawable round_button_over 0x7f02000b
+int drawable shuffle_button 0x7f02000c
+int drawable shuffle_button_pressed 0x7f02000d
 int id action_settings 0x7f060021
 int id album_back 0x7f060007
 int id album_cover 0x7f06001c

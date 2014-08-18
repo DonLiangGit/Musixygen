@@ -10,8 +10,6 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
@@ -56,7 +54,7 @@ public class MainActivity extends Activity implements OnCompletionListener {
 	private TextView playTimeField;
 	
 	// Play mode control
-	private boolean LoopBoolean = false;
+	private int LoopBoolean = -1;
 	private boolean ShuffleBoolean =false;
 	private int randomSong;
 	
@@ -339,32 +337,41 @@ public class MainActivity extends Activity implements OnCompletionListener {
         playTimeField = (TextView)findViewById(R.id.playTime);
         songBar = (SeekBar)findViewById(R.id.songBar);
         
-        Button loop = (Button)findViewById(R.id.repeat_button);
+        final Button loop = (Button)findViewById(R.id.repeat_button);
         loop.setOnClickListener(new View.OnClickListener() {       	
         	@Override
         	public void onClick(View v) {
-        		if (!LoopBoolean && mediaPlayer != null ) {
-	        		Toast.makeText(getBaseContext(), "Single Repeated", Toast.LENGTH_SHORT ).show();
-	        		LoopBoolean = true; 
-        		} else {
-            		Toast.makeText(getBaseContext(), "UnRepeated", Toast.LENGTH_SHORT ).show();
+        		if (LoopBoolean == -1 && mediaPlayer != null ) {
+	        		Toast.makeText(getBaseContext(), "Single Repeat", Toast.LENGTH_SHORT ).show();
+	        		loop.setBackgroundResource(R.drawable.repeat_one_button_pressed);
+	        		mediaPlayer.setLooping(true); 
+	        		LoopBoolean = 1; 
+        		} else if (LoopBoolean == 1 && mediaPlayer != null ) {
+            		Toast.makeText(getBaseContext(), "All Repeat", Toast.LENGTH_SHORT ).show();
+            		loop.setBackgroundResource(R.drawable.repeat_button_pressed);
             		mediaPlayer.setLooping(false); 
-            		LoopBoolean = false; 
-        		}     		
+            		LoopBoolean = 2; 
+        		} else {
+        			loop.setBackgroundResource(R.drawable.repeat_button);
+        			LoopBoolean = -1;
+        			
+        		}  		
         	}
         });
         
-        Button shuffle = (Button)findViewById(R.id.shuffle_button);
+        final Button shuffle = (Button)findViewById(R.id.shuffle_button);
         shuffle.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				if (!ShuffleBoolean && mediaPlayer != null ) {
 					Toast.makeText(getBaseContext(), "Shuffle", Toast.LENGTH_SHORT ).show();
+					shuffle.setBackgroundResource(R.drawable.shuffle_button_pressed);
 					randomSong = new Random().nextInt(songNumber);
 					ShuffleBoolean = true;
 				} else {
-					Toast.makeText(getBaseContext(), "Nah", Toast.LENGTH_SHORT ).show();
+					Toast.makeText(getBaseContext(), "Unshuffle", Toast.LENGTH_SHORT ).show();
+					shuffle.setBackgroundResource(R.drawable.shuffle_button);
 					ShuffleBoolean = false;
 				}
 			}
@@ -552,31 +559,26 @@ public class MainActivity extends Activity implements OnCompletionListener {
 	@Override
 	public void onCompletion(MediaPlayer mp) {
 		// TODO Auto-generated method stub
-//		View highLightedItem = null;
-		
-		if (LoopBoolean == true) {
+		if (LoopBoolean == 1) {
 			playSong(currentSongIndex);
 		} else if (ShuffleBoolean == true) {
 			playSong(randomSong);
-		} else if (currentSongIndex < songNumber - 1) {
+		} else if ((currentSongIndex < songNumber - 1) && LoopBoolean == -1) {
 			Log.d("if condition",Integer.toString(currentSongIndex+1));
 			// Clean the current highlighted
-//			HLFlagClear.setBackground(null);
-			
-			playSong(currentSongIndex + 1);
-			
+			LastView.setBackground(null);
+			playSong(currentSongIndex + 1);			
 			currentSongIndex = currentSongIndex + 1;
-//			HLFlag = currentSongIndex; // this is whatsup
+			LastView = lv.getChildAt(currentSongIndex);
+			LastView.setBackgroundColor(Color.parseColor("#4D9cede4"));
 			// Scroll Effect UI
 			lv.smoothScrollToPosition(currentSongIndex);
 			
-//			highLightedItem = lv.getChildAt(currentSongIndex);
-//			highLightedItem.setBackgroundColor(Color.parseColor("#4D9cede4"));
-			
 		} else {
-			playSong(0);			
-			currentSongIndex = 0;
-			lv.smoothScrollToPosition(currentSongIndex);
+//			LastView.setBackground(null);
+//			playSong(0);			
+//			currentSongIndex = 0;
+//			lv.smoothScrollToPosition(currentSongIndex);
 		}
 	}
 

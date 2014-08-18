@@ -161,9 +161,12 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int pause_button=0x7f020005;
         public static final int play_button=0x7f020006;
         public static final int repeat_button=0x7f020007;
-        public static final int round_button=0x7f020008;
-        public static final int round_button_over=0x7f020009;
-        public static final int shuffle_button=0x7f02000a;
+        public static final int repeat_button_pressed=0x7f020008;
+        public static final int repeat_one_button_pressed=0x7f020009;
+        public static final int round_button=0x7f02000a;
+        public static final int round_button_over=0x7f02000b;
+        public static final int shuffle_button=0x7f02000c;
+        public static final int shuffle_button_pressed=0x7f02000d;
     }
     public static final class id {
         public static final int action_settings=0x7f060021;
