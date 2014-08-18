@@ -336,6 +336,7 @@ public class MainActivity extends Activity implements OnCompletionListener {
         
         playTimeField = (TextView)findViewById(R.id.playTime);
         songBar = (SeekBar)findViewById(R.id.songBar);
+        songBar.setThumb(null); 
         
         final Button loop = (Button)findViewById(R.id.repeat_button);
         loop.setOnClickListener(new View.OnClickListener() {       	
