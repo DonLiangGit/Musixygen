@@ -570,7 +570,6 @@ public class MainActivity extends Activity implements OnCompletionListener {
 			playSong(randomSong);
 			lv.smoothScrollToPosition(randomSong);			
 		} else if (currentSongIndex < songNumber - 1) {
-			Log.d("if condition",Integer.toString(currentSongIndex+1));
 			// Clean the current highlighted
 			LastView.setBackgroundColor(Color.TRANSPARENT);
 			playSong(currentSongIndex + 1);			
@@ -585,7 +584,7 @@ public class MainActivity extends Activity implements OnCompletionListener {
 			// Scroll Effect UI
 			lv.smoothScrollToPosition(currentSongIndex);
 			
-		} else {
+		} else if (LoopBoolean == 2) {
 			playSong(0);			
 			currentSongIndex = 0;
 			lv.smoothScrollToPosition(currentSongIndex);
