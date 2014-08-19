@@ -6,7 +6,7 @@ Musixygen
 * ~~Integration slidingmenu and .mp3 listview~~
 * Searching and social network integradtion
 
-<img src="images/demo_img.png" width="50%" height="50%">  
+<img src="images/demo_img.jpg" width="50%" height="50%">  
 Musixygen App Preview
 
 #### Features:
