@@ -35,6 +35,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SimpleAdapter;
@@ -558,29 +559,36 @@ public class MainActivity extends Activity implements OnCompletionListener {
 	@Override
 	public void onCompletion(MediaPlayer mp) {
 		// TODO Auto-generated method stub
+		ListAdapter itemAdapter = lv.getAdapter();
+		if (itemAdapter != null) {
+			Log.d("ListAdapter", "it works");
+		}
+		
 		if (LoopBoolean == 1) {
 			playSong(currentSongIndex);
 		} else if (ShuffleBoolean == true) {
 			playSong(randomSong);
+			lv.smoothScrollToPosition(randomSong);			
 		} else if (currentSongIndex < songNumber - 1) {
 			Log.d("if condition",Integer.toString(currentSongIndex+1));
 			// Clean the current highlighted
 			LastView.setBackgroundColor(Color.TRANSPARENT);
 			playSong(currentSongIndex + 1);			
 			currentSongIndex = currentSongIndex + 1;
-			LastView = lv.getChildAt(currentSongIndex);
-			if (LastView == null) {
-				Log.d("LastView","is null");
+			
+			LastView = itemAdapter.getView(currentSongIndex, null, lv);
+			if (LastView != null) {
+				Log.d("LastView","is not null");
 			}
-			LastView.setBackgroundColor(Color.parseColor("#4D9cede4"));
+			LastView.setBackgroundResource(R.color.pressed_color);
+			
 			// Scroll Effect UI
 			lv.smoothScrollToPosition(currentSongIndex);
 			
 		} else {
-//			LastView.setBackground(null);
-//			playSong(0);			
-//			currentSongIndex = 0;
-//			lv.smoothScrollToPosition(currentSongIndex);
+			playSong(0);			
+			currentSongIndex = 0;
+			lv.smoothScrollToPosition(currentSongIndex);
 		}
 	}
 
