@@ -8,4 +8,6 @@
 	
 	<color name="default_color">#151516</color>
 	<color name="pressed_color">#808cfffa</color>
+	
+	<color name="item_pressed">#4D9cede4</color>
 </resources>

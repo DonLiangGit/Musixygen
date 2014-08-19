@@ -18,6 +18,7 @@ int attr viewAbove 0x7f010001
 int attr viewBehind 0x7f010002
 int color button_default 0x7f070000
 int color default_color 0x7f070005
+int color item_pressed 0x7f070007
 int color layout_default 0x7f070002
 int color pressed_color 0x7f070006
 int color slidng_menu 0x7f070004

@@ -45,40 +45,38 @@ import android.widget.AdapterView.OnItemClickListener;
 
 public class MainActivity extends Activity implements OnCompletionListener {
 
+	// MediaPlayer part
 	private MediaPlayer mediaPlayer = new MediaPlayer();
-	private SeekBar songBar;
-	private double startTime = 0;
-	private double lastTime = 0;
-	private int temp = 0;
-	private int forwardTime = 10000;
-	private int rewindTime = 10000;
-	private TextView playTimeField;
-	
-	// Play mode control
-	private int LoopBoolean = -1;
-	private boolean ShuffleBoolean =false;
-	private int randomSong;
-	
-	private int positionTag = -1;
-	private int resumeTag = 0;
-	
 	private MediaMetadataRetriever songMainMeta = new MediaMetadataRetriever();
+	private File SDCard_Path = Environment.getExternalStorageDirectory();
+	private File musicPathFile;
+	private final String Path = new String(SDCard_Path.toString() + "/Musixygen/");	
+	
+	// UI components
+	private SeekBar songBar;
+	private Handler barHandler = new Handler();	//Handler for seekbar progress
 	private ImageView album_artFront = null;
 	private ImageView album_artBack = null;
 	private Button state_btn = null;
 	private TextView artist_name = null;
 	private TextView song_title= null;
+	private TextView playTimeField;
+	private double startTime = 0;
+	private double lastTime = 0;
+	private ListView lv; // ListView to display songs
+	private int temp = 0;
+	private int forwardTime = 10000;
+	private int rewindTime = 10000;
+	//	private ListView SlidingMenu_List;
 	
-	private Handler barHandler = new Handler();
-	
-//	private ListView SlidingMenu_List;
-
-	private File SDCard_Path = Environment.getExternalStorageDirectory();;
-	private File musicPathFile;
-	
+	// Play mode control
+	private int LoopBoolean = -1;
+	private boolean ShuffleBoolean =false;
+	private int randomSong;	
+	private int positionTag = -1;
+	private int resumeTag = 0;
+			
 	private List<String> songs = new ArrayList<String>();
-	private final String Path = new String(SDCard_Path.toString() + "/Musixygen/");	
-	private ListView lv;
 	
 	ArrayList<Song> songsTest;
 	
@@ -88,9 +86,7 @@ public class MainActivity extends Activity implements OnCompletionListener {
 	private int currentSongIndex = -1;
 	
 	// Listview flag
-	private int HLFlag = -1;
 	private View LastView = null;
-	private View CurrentView = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -104,8 +100,8 @@ public class MainActivity extends Activity implements OnCompletionListener {
 //        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
 //        menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
 //        menu.setMenu(R.layout.activity_menu);
+        GetSongs();
         UIInit();
-        checkAvail();
         mediaPlayer.setOnCompletionListener(this);
 		
 //		SlidingMenu_List = (ListView) findViewById(R.id.left_drawer);
@@ -136,6 +132,9 @@ public class MainActivity extends Activity implements OnCompletionListener {
 					// User clicks a new list item					
 					LastView.setBackground(null);
 					LastView = v;
+					if (LastView != null){
+						Log.d("Damn it", "workssssss");
+					}
 					v.setBackgroundColor(Color.parseColor("#4D9cede4"));
 					Log.d("if 3","LastView != v");
 				}
@@ -379,9 +378,8 @@ public class MainActivity extends Activity implements OnCompletionListener {
 		});
 	}
 
-	private void checkAvail() {
+	private void GetSongs() {
 		
-		// testing
 		songsTest = new ArrayList<Song>();
 		ArrayList<Map<String,String>> songsMap = new ArrayList<Map<String,String>>();
 		
@@ -389,7 +387,6 @@ public class MainActivity extends Activity implements OnCompletionListener {
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_REMOVED)) {
         	return;
         } else { 
-//        	textview.setText("SD Card is here.");
         	SDCard_Path = Environment.getExternalStorageDirectory();
         }
         // Check folder in SD Card exists or not
@@ -401,7 +398,6 @@ public class MainActivity extends Activity implements OnCompletionListener {
         	// Do nothing if exists or not.
         }
         if (musicPathFile.listFiles() == null) {
-//        	textview.setText("Cannot find files!");
         	Log.d("No song","null");
         } else {
         	
@@ -458,15 +454,11 @@ public class MainActivity extends Activity implements OnCompletionListener {
         			Map<String, String> mapSongInfo = convertSongToMap(s);
         			songsMap.add(mapSongInfo);
         			
-//        			songs.add(file.getName());
-        			
         		}
         		
         		SimpleAdapter adapter = new SimpleAdapter(this,songsMap,R.layout.song_list_item, new String[]{"songTitle","duration"},new int[]{R.id.text1, R.id.text2});
         		lv.setAdapter(adapter);
         		
-//        		ArrayAdapter<String> songList = new ArrayAdapter<String>(this, R.layout.list_item, R.id.text1, songs);
-//        		lv.setAdapter(songList);
         	}       	
         }	
 	}
@@ -474,7 +466,6 @@ public class MainActivity extends Activity implements OnCompletionListener {
 	private Runnable updatedSongTime = new Runnable() {
     	@Override
 		public void run() {
-			// TODO Auto-generated method stub
     		// Here we got an exception.
 			startTime = mediaPlayer.getCurrentPosition();
 			// Dynamic Time
@@ -571,15 +562,18 @@ public class MainActivity extends Activity implements OnCompletionListener {
 			lv.smoothScrollToPosition(randomSong);			
 		} else if (currentSongIndex < songNumber - 1) {
 			// Clean the current highlighted
-			LastView.setBackgroundColor(Color.TRANSPARENT);
-			playSong(currentSongIndex + 1);			
-			currentSongIndex = currentSongIndex + 1;
-			
-			LastView = itemAdapter.getView(currentSongIndex, null, lv);
 			if (LastView != null) {
-				Log.d("LastView","is not null");
+				LastView.setBackgroundColor(Color.TRANSPARENT);
+			}		
+			playSong(currentSongIndex + 1);			
+			currentSongIndex = currentSongIndex + 1;	
+			Log.d("lol",Integer.toString(currentSongIndex));
+			LastView = lv.getChildAt(currentSongIndex);
+			
+			if (LastView == null) {
+				Log.d("LastView","is null");
 			}
-			LastView.setBackgroundResource(R.color.pressed_color);
+			LastView.setBackgroundColor(getResources().getColor(R.color.item_pressed));
 			
 			// Scroll Effect UI
 			lv.smoothScrollToPosition(currentSongIndex);

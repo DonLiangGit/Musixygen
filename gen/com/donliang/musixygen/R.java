@@ -134,6 +134,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class color {
         public static final int button_default=0x7f070000;
         public static final int default_color=0x7f070005;
+        public static final int item_pressed=0x7f070007;
         public static final int layout_default=0x7f070002;
         public static final int pressed_color=0x7f070006;
         public static final int slidng_menu=0x7f070004;
