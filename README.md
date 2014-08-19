@@ -6,7 +6,7 @@ Musixygen
 * ~~Integration slidingmenu and .mp3 listview~~
 * Searching and social network integradtion
 
-<img src="images/demo_img.png" width="50%" height="50%">  
+<img src="images/demo_img.jpg" width="40%" height="40%">  
 Musixygen App Preview
 
 #### Features:
@@ -28,7 +28,7 @@ Known Issues:
 - ~~Sliding Menu~~ / Splash Screen have not been implemented.
 - ~~Progress bar~~(Need Overlay effect)
 - ~~Read Android local storage~~
-- ~~Flexible Album info()~~ To retrieve more properties from an mp3 [Google API](http://developer.android.com/reference/android/media/MediaMetadataRetriever.html)
+- ~~Flexible Album info() to retrieve more properties from an mp3~~ [Google API](http://developer.android.com/reference/android/media/MediaMetadataRetriever.html)
 - Overlay Progressbar
 - Auto searching related song put into a list(parser)
 - ~~Play songs in single repeat, repeat all, order, shuffle~~ [Google API](http://developer.android.com/reference/android/media/MediaPlayer.html#setOnCompletionListener(android.media.MediaPlayer.OnCompletionListener))
