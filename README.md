@@ -6,6 +6,9 @@ Musixygen
 * ~~Integration slidingmenu and .mp3 listview~~
 * Searching and social network integradtion
 
+<img src="images/demo_img.png" width="50%" height="50%">  
+Musixygen App Preview
+
 #### Features:
 * 3 playing modes: Single repeat, Shuffle and Play in order(Default)
 * Multi-threading reduces load of UI thread.
