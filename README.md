@@ -1,14 +1,13 @@
 Musixygen
 =========
+<img src="images/demo_img.jpg" width="40%" height="40%">  
+Musixygen App Preview
 
 #### App developement stages:
 * MainActivity Polished
 * ~~Integration slidingmenu and .mp3 listview~~
 * Searching and social network integradtion
-
-<img src="images/demo_img.jpg" width="40%" height="40%">  
-Musixygen App Preview
-
+* 
 #### Features:
 * 3 playing modes: Single repeat, Shuffle and Play in order(Default)
 * Multi-threading reduces load of UI thread.
