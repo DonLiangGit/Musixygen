@@ -7,7 +7,8 @@ Musixygen App Preview
 * MainActivity Polished
 * ~~Integration slidingmenu and .mp3 listview~~
 * Searching and social network integradtion
-* 
+
+
 #### Features:
 * 3 playing modes: Single repeat, Shuffle and Play in order(Default)
 * Multi-threading reduces load of UI thread.
