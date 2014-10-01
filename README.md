@@ -1,9 +1,10 @@
 Musixygen
 =========
 <img src="images/demo_img.jpg" width="40%" height="40%">
-[demo linke](https://www.youtube.com/watch?v=ECz39r0BjFY&feature=youtu.be)
-Musixygen App Preview
 
+[demo link](https://www.youtube.com/watch?v=ECz39r0BjFY&feature=youtu.be)
+
+Musixygen App Preview
 #### App developement stages:
 * MainActivity Polished
 * ~~Integration slidingmenu and .mp3 listview~~
