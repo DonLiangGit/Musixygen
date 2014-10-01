@@ -2,7 +2,7 @@ Musixygen
 =========
 <img src="images/demo_img.jpg" width="40%" height="40%">
 
-[demo link](https://www.youtube.com/watch?v=ECz39r0BjFY&feature=youtu.be)
+[Demo link](https://www.youtube.com/watch?v=ECz39r0BjFY&feature=youtu.be)
 
 Musixygen App Preview
 #### App developement stages:
